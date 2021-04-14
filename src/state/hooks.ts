@@ -74,6 +74,9 @@ export const usePriceShrimpBnb = (): BigNumber => {
 export const usePriceBnbBusd = (): BigNumber => {
   const pid = 3 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
+
+  if (!farm) return ZERO
+
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 

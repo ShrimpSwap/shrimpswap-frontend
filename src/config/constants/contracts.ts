@@ -1,11 +1,11 @@
 export default {
   shrimp: {
     56: '', // FIXME: Add SHRIMP MAINNET
-    97: '0xfaa3905209123d9a986186d386ea4a885eb66e53',
+    97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF',
   },
   masterShrimp: {
     56: '', // FIXME: Add masterShrimp MAINNET
-    97: '0xe90F0aEb1f76bA3c20A69063e036E2e337141FeC',
+    97: '0x136D2F682077Ca419A8777C02880ac8550Fe51A9',
   },
   wbnb: {
     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',

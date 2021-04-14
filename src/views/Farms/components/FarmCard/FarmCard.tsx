@@ -7,6 +7,7 @@ import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
+import { getBalanceNumber } from 'utils/formatBalance'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -177,7 +178,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       <Flex justifyContent="space-between">
         <Text>{TranslateString(10001, 'Deposit Fee')}:</Text>
         <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-          {farm.depositFeeBP / 100}%
+          {getBalanceNumber(new BigNumber(farm.depositFeeBP).div(100)).toFixed(4)}%
         </Text>
       </Flex>
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />

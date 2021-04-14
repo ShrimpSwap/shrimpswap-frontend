@@ -106,7 +106,7 @@ const fetchFarms = async () => {
         },
         {
           address: getMasterShrimpAddress(),
-          name: 'adjustmentRatio',
+          name: 'getCurrentAdjustmentRatio',
         },
       ])
 
@@ -119,7 +119,7 @@ const fetchFarms = async () => {
         tokenPriceVsQuote: tokenPriceVsQuote.toJSON(),
         poolWeight: poolWeight.toNumber(),
         multiplier: `${allocPoint.div(100).toString()}X`,
-        depositFeeBP: poolInfo.depositFeeBP * adjustmentRatio,
+        depositFeeBP: (new BigNumber(poolInfo.depositFeeBP).times(adjustmentRatio)).toNumber(),
         shrimpPerBlock: new BigNumber(adjustmentRatio).toNumber(),
       }
     }),

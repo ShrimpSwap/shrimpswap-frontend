@@ -9,13 +9,13 @@ const farms: FarmConfig[] = [
     isTokenOnly: true,
     lpSymbol: 'SHRIMP',
     lpAddresses: {
-      97: '0xf62e8d3EcA464C9Fa9D46f169211eF4a41E41fE8',
+      97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // FIXME
       56: '0x6596f770786915556C47E301cC8290aa14288d99', // SHRIMP-BUSD
     },
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
-      97: '0x85582d24455CAAf44fC4f914bDca2a6CB73e6681',
-      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
+      97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // FIXME
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -53,22 +53,22 @@ const farms: FarmConfig[] = [
   //   quoteTokenAdresses: contracts.wbnb,
   //   isMasterShrimp: true,
   // },
-  {
-    pid: 3,
-    lpSymbol: 'BNB-BUSD',
-    lpAddresses: {
-      97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
-      56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f', // FIXME:
-    },
-    tokenSymbol: 'BNB',
-    tokenAddresses: {
-      97: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // FIXME:
-      56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // FIXME:https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
-    },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
-    isMasterShrimp: true,
-  },
+  // {
+  //   pid: 3,
+  //   lpSymbol: 'BNB-BUSD',
+  //   lpAddresses: {
+  //     97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
+  //     56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f', // FIXME:
+  //   },
+  //   tokenSymbol: 'BNB',
+  //   tokenAddresses: {
+  //     97: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // FIXME:
+  //     56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // FIXME:https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
+  //   },
+  //   quoteTokenSymbol: QuoteToken.BUSD,
+  //   quoteTokenAdresses: contracts.busd,
+  //   isMasterShrimp: true,
+  // },
   // {
   //   pid: 4,
   //   lpSymbol: 'DAI-BUSD',
