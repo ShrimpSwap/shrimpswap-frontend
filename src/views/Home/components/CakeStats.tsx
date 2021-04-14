@@ -39,7 +39,7 @@ const CakeStats = () => {
     <StyledCakeStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'Shrimpy Stats')}
+          {TranslateString(534, 'Statistics')}
         </Heading>
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'Total SHRIMP Supply')}</Text>

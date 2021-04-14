@@ -62,12 +62,18 @@ export const usePoolFromPid = (sousId: number): Pool =>
 export const usePriceShrimpBusd = (): BigNumber => {
   const pid = 0 // SHRIMP-BUSD LP
   const farm = useFarmFromPid(pid)
+
+  if (!farm) return ZERO
+
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
 export const usePriceShrimpBnb = (): BigNumber => {
   const pid = 2 // SHRIMP-BNB LP
   const farm = useFarmFromPid(pid)
+
+  if (!farm) return ZERO
+
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 

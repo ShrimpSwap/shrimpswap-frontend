@@ -4,23 +4,23 @@ import { FarmConfig, QuoteToken } from './types'
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const farms: FarmConfig[] = [
-  {
-    pid: 0,
-    isTokenOnly: true,
-    lpSymbol: 'SHRIMP',
-    lpAddresses: {
-      97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // FIXME
-      56: '0x6596f770786915556C47E301cC8290aa14288d99', // SHRIMP-BUSD
-    },
-    tokenSymbol: 'SHRIMP',
-    tokenAddresses: {
-      97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF',
-      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // FIXME
-    },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
-    isMasterShrimp: true,
-  },
+  // {
+  //   pid: 0,
+  //   isTokenOnly: true,
+  //   lpSymbol: 'SHRIMP',
+  //   lpAddresses: {
+  //     97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // FIXME
+  //     56: '0x6596f770786915556C47E301cC8290aa14288d99', // SHRIMP-BUSD
+  //   },
+  //   tokenSymbol: 'SHRIMP',
+  //   tokenAddresses: {
+  //     97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF',
+  //     56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // FIXME
+  //   },
+  //   quoteTokenSymbol: QuoteToken.BUSD,
+  //   quoteTokenAdresses: contracts.busd,
+  //   isMasterShrimp: true,
+  // },
   // {
   //   pid: 1,
   //   lpSymbol: 'SHRIMP-BUSD',

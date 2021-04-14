@@ -31,7 +31,7 @@ const CountdownBanner = () => (
       <Flex alignItems="center" justifyContent={['center', 'center', null, 'start']}>
         <Countdown>
           Farms and pools will open
-          {` ${moment('15 04 2021 09:00:00', 'DD MM YYYY hh:mm:ss').fromNow()}`}
+          {` ${moment('18 04 2021 09:00:00', 'DD MM YYYY hh:mm:ss').fromNow()}`}
         </Countdown>
       </Flex>
     </Container>
