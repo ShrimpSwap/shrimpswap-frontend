@@ -89,7 +89,7 @@ const fetchFarms = async () => {
         }
       }
 
-      const [info, totalAllocPoint, poolInfo, adjustmentRatio] = await multicall(masterShrimpABI, [
+      const [info, totalAllocPoint, poolInfo, adjustmentRatio, initialShrimpPerblock] = await multicall(masterShrimpABI, [
         {
           address: getMasterShrimpAddress(),
           name: 'poolInfo',
@@ -108,10 +108,15 @@ const fetchFarms = async () => {
           address: getMasterShrimpAddress(),
           name: 'getCurrentAdjustmentRatio',
         },
+        {
+          address: getMasterShrimpAddress(),
+          name: 'initialShrimpPerBlock',
+        },
       ])
 
       const allocPoint = new BigNumber(info.allocPoint._hex)
       const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
+      const initialShrimpPerBlockFromWei = new BigNumber(initialShrimpPerblock).div(new BigNumber(10).pow(18));
       return {
         ...farmConfig,
         tokenAmount: tokenAmount.toJSON(),
@@ -120,7 +125,7 @@ const fetchFarms = async () => {
         poolWeight: poolWeight.toNumber(),
         multiplier: `${allocPoint.div(100).toString()}X`,
         depositFeeBP: (new BigNumber(poolInfo.depositFeeBP).times(adjustmentRatio)).toNumber(),
-        shrimpPerBlock: new BigNumber(adjustmentRatio).toNumber(),
+        shrimpPerBlock: new BigNumber(adjustmentRatio).times(initialShrimpPerBlockFromWei).toNumber(),
       }
     }),
   )
