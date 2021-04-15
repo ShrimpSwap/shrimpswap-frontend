@@ -56,14 +56,18 @@ const Cards = styled(BaseLayout)`
 `
 
 const CTACards = styled(BaseLayout)`
-  align-items: start;
+  align-items: stretch;
+  justify-content: stretch;
   margin-bottom: 12px;
+
   & > div {
+    grid-column: span 6;
     width: 100%;
   }
+
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
-      grid-column: span 6;
+      grid-column: span 8;
     }
   }
   ${({ theme }) => theme.mediaQueries.lg} {
