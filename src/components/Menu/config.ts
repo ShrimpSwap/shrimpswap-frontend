@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://shrimpswap-exchange.netlify.app/#/swap',
+        href: 'https://exchange.shrimpswap.finance/#/swap',
       },
       {
         label: 'Liquidity',
-        href: 'https://shrimpswap-exchange.netlify.app/#/pool',
+        href: 'https://exchange.shrimpswap.finance/#/pool',
       },
     ],
   },
