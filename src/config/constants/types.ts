@@ -22,19 +22,12 @@ export enum QuoteToken {
   'BNB' = 'BNB',
   'WBNB' = 'WBNB',
   'SHRIMP' = 'SHRIMP',
-  'SUSHI' = 'SUSHI',
   'CAKE' = 'CAKE',
-  'SYRUP' = 'SYRUP',
   'BUSD' = 'BUSD',
   'ETH' = 'ETH',
   'TWT' = 'TWT',
   'UST' = 'UST',
-  'SHRIMPBLUE' = 'SHRIMP-BLUE',
-  'SHRIMPSLME' = 'SHRIMP-SLME',
-  'SHRIMPBUSD' = 'SHRIMP-BUSD',
-  'SHRIMPMOMO' = 'SHRIMP-MOMO',
-  'SHRIMPPALM' = 'SHRIMP-PALM',
-  'SHRIMPMCH' = 'SHRIMP-MCH',
+  'SALT' = 'SALT',
 }
 
 export enum PoolCategory {

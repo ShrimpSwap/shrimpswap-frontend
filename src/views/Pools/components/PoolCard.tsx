@@ -75,7 +75,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
   const blocksUntilStart = Math.max(startBlock - block, 0)
   const blocksRemaining = Math.max(endBlock - block, 0)
-  const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
   const isCardActive = isFinished && accountHasStakedBalance
@@ -112,13 +111,13 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       {isFinished && <PoolFinishedSash />}
       <div style={{ padding: '24px' }}>
         <CardTitle isFinished={isFinished}>
-          {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
+          {tokenName} {TranslateString(348, 'Pool')}
         </CardTitle>
         <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
           <div style={{ flex: 1 }}>
             <Image src={`/images/tokens/${image || tokenName}.svg`} width={64} height={64} alt={tokenName} />
           </div>
-          {account && harvest && !isOldSyrup && (
+          {account && harvest && (
             <HarvestButton
               disabled={!earnings.toNumber() || pendingTx}
               text={pendingTx ? 'Collecting' : 'Harvest'}
@@ -130,22 +129,18 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             />
           )}
         </div>
-        {!isOldSyrup ? (
-          <BalanceAndCompound>
-            <Balance
-              value={getBalanceNumber(earnings, tokenDecimals)}
-              decimals={tokenName === 'BTCB' ? 5 : 3}
-              isDisabled={isFinished}
-            />
-          </BalanceAndCompound>
-        ) : (
-          <OldSyrupTitle hasBalance={accountHasStakedBalance} />
-        )}
+        <BalanceAndCompound>
+          <Balance
+            value={getBalanceNumber(earnings, tokenDecimals)}
+            decimals={tokenName === 'BTCB' ? 5 : 3}
+            isDisabled={isFinished}
+          />
+        </BalanceAndCompound>
         <Label isFinished={isFinished} text={TranslateString(330, `${tokenName} earned`)} />
         <StyledCardActions>
           {!account && <UnlockButton />}
           {account &&
-            (needsApproval && !isOldSyrup ? (
+            (needsApproval ? (
               <div style={{ flex: 1 }}>
                 <Button disabled={isFinished || requestedApproval} onClick={handleApprove} fullWidth>
                   {`Approve ${stakingTokenName}`}
@@ -153,32 +148,19 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
               </div>
             ) : (
               <>
-                <Button
-                  disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
-                  onClick={
-                    isOldSyrup
-                      ? async () => {
-                          setPendingTx(true)
-                          await onUnstake('0')
-                          setPendingTx(false)
-                        }
-                      : onPresentWithdraw
-                  }
-                >
+                <Button disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx} onClick={onPresentWithdraw}>
                   {`Unstake ${stakingTokenName}`}
                 </Button>
                 <StyledActionSpacer />
-                {!isOldSyrup && (
-                  <IconButton disabled={isFinished} onClick={onPresentDeposit}>
-                    <AddIcon color="background" />
-                  </IconButton>
-                )}
+                <IconButton disabled={isFinished} onClick={onPresentDeposit}>
+                  <AddIcon color="background" />
+                </IconButton>
               </>
             ))}
         </StyledCardActions>
         <StyledDetails>
           <div style={{ flex: 1 }}>{TranslateString(736, 'APR')}:</div>
-          {isFinished || isOldSyrup || !apy || apy?.isNaN() || !apy?.isFinite() ? (
+          {isFinished || !apy || apy?.isNaN() || !apy?.isFinite() ? (
             '-'
           ) : (
             <Balance fontSize="14px" isDisabled={isFinished} value={apy?.toNumber()} decimals={2} unit="%" />
