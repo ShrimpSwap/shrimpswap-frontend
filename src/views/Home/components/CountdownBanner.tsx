@@ -31,7 +31,11 @@ const CountdownBanner = () => (
       <Flex alignItems="center" justifyContent={['center', 'center', null, 'start']}>
         <Countdown>
           Farms and pools will open
-          {` ${moment('18 04 2021 09:00:00', 'DD MM YYYY hh:mm:ss').fromNow()}`}
+          {` ${moment('21 04 2021 10:00:00', 'DD MM YYYY hh:mm:ss').fromNow()}`} or when our{' '}
+          <a href="https://www.saltswap.finance/ido" style={{ color: '#bd1220' }}>
+            IDO
+          </a>{' '}
+          reaches the hardcap
         </Countdown>
       </Flex>
     </Container>
