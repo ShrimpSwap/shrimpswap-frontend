@@ -10,7 +10,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SHRIMP',
     lpAddresses: {
       97: '', // FIXME: SHRIMP-BUSD
-      56: '', // FIXME: SHRIMP-BUSD
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e',
     },
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
@@ -118,7 +118,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
-    pid: 8,
+    pid: 7,
     isTokenOnly: true,
     lpSymbol: 'BUSD',
     lpAddresses: {
@@ -135,7 +135,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
-    pid: 9,
+    pid: 8,
     isTokenOnly: true,
     lpSymbol: 'WBNB',
     lpAddresses: {
@@ -152,7 +152,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
-    pid: 10,
+    pid: 9,
     isTokenOnly: true,
     lpSymbol: 'CAKE',
     lpAddresses: {
@@ -169,7 +169,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
-    pid: 11,
+    pid: 10,
     isTokenOnly: true,
     lpSymbol: 'SALT',
     lpAddresses: {
@@ -186,7 +186,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
-    pid: 12,
+    pid: 11,
     lpSymbol: 'SHRIMP-CAKE',
     lpAddresses: {
       97: '', // FIXME
