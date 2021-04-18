@@ -27,6 +27,10 @@ export default {
     56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
     97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
   },
+  usdc: {
+    56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
+    97: '',
+  },
   eth: {
     56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',

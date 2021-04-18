@@ -181,8 +181,8 @@ const farms: FarmConfig[] = [
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
       56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
+    quoteTokenSymbol: QuoteToken.USDC,
+    quoteTokenAdresses: contracts.usdc,
     isMasterShrimp: true,
   },
   {
