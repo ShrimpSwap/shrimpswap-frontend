@@ -26,7 +26,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SHRIMP-BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x0984018619DcA2B783ebf5578D9E6441C0897870', 
+      56: '0x0984018619DcA2B783ebf5578D9E6441C0897870',
     },
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
@@ -155,23 +155,6 @@ const farms: FarmConfig[] = [
   {
     pid: 9,
     isTokenOnly: true,
-    lpSymbol: 'SALT',
-    lpAddresses: {
-      97: '', // FIXME
-      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
-    },
-    tokenSymbol: 'SALT',
-    tokenAddresses: {
-      97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
-    },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
-    isMasterShrimp: true,
-  },
-  {
-    pid: 10,
-    isTokenOnly: true,
     lpSymbol: 'DOGE',
     lpAddresses: {
       97: '', // FIXME
@@ -187,13 +170,30 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
-    pid: 11,
+    pid: 10,
     lpSymbol: 'USDT-USDC',
     lpAddresses: {
       97: '', // FIXME
       56: '0x85f8628bfff75d08f1aa415e5c7e85d96bfd7f57',
     },
     tokenSymbol: 'USDT',
+    tokenAddresses: {
+      97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+  },
+  {
+    pid: 11,
+    isTokenOnly: true,
+    lpSymbol: 'SALT',
+    lpAddresses: {
+      97: '', // FIXME
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
+    },
+    tokenSymbol: 'SALT',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
       56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
