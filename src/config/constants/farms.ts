@@ -15,7 +15,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -31,7 +31,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -47,7 +47,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
@@ -58,12 +58,12 @@ const farms: FarmConfig[] = [
     lpSymbol: 'BNB-BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '', // FIXME
+      56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f',
     },
     tokenSymbol: 'BNB',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -79,7 +79,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'BUSD',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -90,12 +90,12 @@ const farms: FarmConfig[] = [
     lpSymbol: 'ETH-BETH',
     lpAddresses: {
       97: '', // FIXME
-      56: '', // FIXME
+      56: '0x99d865Ed50D2C32c1493896810FA386c1Ce81D91',
     },
     tokenSymbol: 'BETH',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
@@ -106,31 +106,15 @@ const farms: FarmConfig[] = [
     lpSymbol: 'CAKE-BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '', // FIXME
+      56: '0x0ed8e0a2d99643e1e65cca22ed4424090b8b7458',
     },
     tokenSymbol: 'CAKE',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
-    isMasterShrimp: true,
-  },
-  {
-    pid: 7,
-    lpSymbol: 'CAKE-BNB',
-    lpAddresses: {
-      97: '', // FIXME
-      56: '', // FIXME
-    },
-    tokenSymbol: 'CAKE',
-    tokenAddresses: {
-      97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
     isMasterShrimp: true,
   },
   {
@@ -139,12 +123,12 @@ const farms: FarmConfig[] = [
     lpSymbol: 'BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '', // FIXME
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
     },
     tokenSymbol: 'BUSD',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -156,12 +140,12 @@ const farms: FarmConfig[] = [
     lpSymbol: 'WBNB',
     lpAddresses: {
       97: '', // FIXME
-      56: '', // FIXME
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     },
     tokenSymbol: 'BNB',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -173,12 +157,12 @@ const farms: FarmConfig[] = [
     lpSymbol: 'CAKE',
     lpAddresses: {
       97: '', // FIXME
-      56: '', // FIXME
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
     tokenSymbol: 'CAKE',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -190,12 +174,12 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SALT',
     lpAddresses: {
       97: '', // FIXME
-      56: '', // FIXME
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
     },
     tokenSymbol: 'SALT',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.SALT,
     quoteTokenAdresses: contracts.salt,
@@ -211,7 +195,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'USDC',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '', // FIXME: SHRIMP
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
