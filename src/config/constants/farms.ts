@@ -10,7 +10,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SHRIMP',
     lpAddresses: {
       97: '', // FIXME: SHRIMP-BUSD
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e',
+      56: '0x0984018619DcA2B783ebf5578D9E6441C0897870', // SHRIMP-BUSD
     },
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
@@ -26,7 +26,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SHRIMP-BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x0984018619DcA2B783ebf5578D9E6441C0897870',
+      56: '0x0984018619DcA2B783ebf5578D9E6441C0897870',  // SHRIMP-BUSD
     },
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
@@ -42,7 +42,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SHRIMP-BNB',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x4Ace7a7BB1fCD7b6e7Fd707ebdE3Ffea3F21524A',
+      56: '0x4Ace7a7BB1fCD7b6e7Fd707ebdE3Ffea3F21524A', // SHRIMP-BNB
     },
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
@@ -58,7 +58,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'BNB-BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f',
+      56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f', // BNB-BUSD
     },
     tokenSymbol: 'BNB',
     tokenAddresses: {
@@ -74,7 +74,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'ETH-BETH',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x99d865Ed50D2C32c1493896810FA386c1Ce81D91',
+      56: '0x99d865Ed50D2C32c1493896810FA386c1Ce81D91', // ETH-BETH
     },
     tokenSymbol: 'BETH',
     tokenAddresses: {
@@ -90,7 +90,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'CAKE-BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x0ed8e0a2d99643e1e65cca22ed4424090b8b7458',
+      56: '0x0ed8e0a2d99643e1e65cca22ed4424090b8b7458', // CAKE-BUSD
     },
     tokenSymbol: 'CAKE',
     tokenAddresses: {
@@ -107,7 +107,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
     },
     tokenSymbol: 'BUSD',
     tokenAddresses: {
@@ -124,7 +124,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'WBNB',
     lpAddresses: {
       97: '', // FIXME
-      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+      56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f', // BNB-BUSD
     },
     tokenSymbol: 'BNB',
     tokenAddresses: {
@@ -141,7 +141,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'CAKE',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+      56: '0x0ed8e0a2d99643e1e65cca22ed4424090b8b7458', // CAKE-BUSD
     },
     tokenSymbol: 'CAKE',
     tokenAddresses: {
@@ -158,7 +158,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'DOGE',
     lpAddresses: {
       97: '', // FIXME
-      56: '0xba2ae424d960c26247dd6c32edc70b295c744c43',
+      56: '0x1efcb446bfa553a2eb2fff99c9f76962be6ecac3', // DOGE-BUSD
     },
     tokenSymbol: 'DOGE',
     tokenAddresses: {
@@ -174,7 +174,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'USDT-USDC',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x85f8628bfff75d08f1aa415e5c7e85d96bfd7f57',
+      56: '0x85f8628bfff75d08f1aa415e5c7e85d96bfd7f57', // USDT-USDC
     },
     tokenSymbol: 'USDT',
     tokenAddresses: {
@@ -191,7 +191,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SALT',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
+      56: '0x6596f770786915556C47E301cC8290aa14288d99', // SALT-BUSD
     },
     tokenSymbol: 'SALT',
     tokenAddresses: {
