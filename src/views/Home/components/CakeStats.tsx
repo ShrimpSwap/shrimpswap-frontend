@@ -27,6 +27,7 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getShrimpAddress())
   const farms = useFarms()
+  const maxSupply = "21 000 000"
 
   const shrimpSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
 
@@ -53,6 +54,12 @@ const CakeStats = () => {
           <Text fontSize="14px">{TranslateString(540, 'New SHRIMP per block')}</Text>
           <Text bold fontSize="14px">
             {shrimpPerBlock}
+          </Text>
+        </Row>
+        <Row>
+          <Text fontSize="14px">Max SHRIMP supply</Text>
+          <Text bold fontSize="14px">
+            {maxSupply}
           </Text>
         </Row>
       </CardBody>
