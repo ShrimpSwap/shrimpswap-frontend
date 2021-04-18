@@ -63,7 +63,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'BNB',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // BNB
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -79,7 +79,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'BETH',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0x250632378e573c6be1ac2f97fcdf00515d0aa91b', // BETH
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
@@ -95,7 +95,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'CAKE',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // CAKE
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -112,7 +112,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'BUSD',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -129,7 +129,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'BNB',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -146,7 +146,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'CAKE',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // CAKE
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -163,7 +163,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'DOGE',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0xba2ae424d960c26247dd6c32edc70b295c744c43', // DOGE
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
@@ -179,7 +179,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'USDT',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0x55d398326f99059ff775485246999027b3197955', // USDT
     },
     quoteTokenSymbol: QuoteToken.USDC,
     quoteTokenAdresses: contracts.usdc,
@@ -196,7 +196,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'SALT',
     tokenAddresses: {
       97: '0x40993B0d75ed2d70d644C12E4BdeccE955E9AcfF', // SHRIMP
-      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
