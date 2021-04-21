@@ -26,7 +26,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SHRIMP-BUSD',
     lpAddresses: {
       97: '', // FIXME
-      56: '0x0984018619DcA2B783ebf5578D9E6441C0897870',  // SHRIMP-BUSD
+      56: '0x0984018619DcA2B783ebf5578D9E6441C0897870', // SHRIMP-BUSD
     },
     tokenSymbol: 'SHRIMP',
     tokenAddresses: {
