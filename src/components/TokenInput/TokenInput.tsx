@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js/bignumber'
 import { Button } from '@shrimpswap/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
 import useI18n from '../../hooks/useI18n'
 import Input, { InputProps } from '../Input'
 
@@ -47,8 +46,12 @@ const TokenInput: React.FC<TokenInputProps> = ({
       />
       {depositFeeBP > 0 ? (
         <StyledMaxText>
-          {TranslateString(10001, 'Deposit Fee')}:{' '}
-          {getBalanceNumber(new BigNumber(depositFeeBP || 0).div(100)).toFixed(4)}%{symbol}
+          {TranslateString(10001, 'Deposit Fee')}: {TranslateString(10001, 'Deposit Fee')}:{' '}
+          {new BigNumber(value || 0)
+            .times(depositFeeBP / 10000)
+            .div(1e18)
+            .toString()}{' '}
+          {symbol}
         </StyledMaxText>
       ) : null}
       {burnFee > 0 ? (
