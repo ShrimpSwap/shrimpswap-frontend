@@ -143,13 +143,7 @@ export const useTotalValue = (): BigNumber => {
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
-  }, [
-    bnbPrice,
-    ethPrice,
-    farms,
-    pools,
-    shrimpPrice,
-  ])
+  }, [bnbPrice, ethPrice, farms, pools, shrimpPrice])
 
   if (!totalValue) {
     return new BigNumber(0)
