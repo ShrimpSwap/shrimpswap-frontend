@@ -1,3 +1,4 @@
+import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import masterShrimpABI from 'config/abi/masterShrimp.json'
@@ -60,24 +61,47 @@ const fetchFarms = async () => {
       let tokenPriceVsQuote
       if (farmConfig.isTokenOnly) {
         // console.log("farmConfig.tokenSymbol",farmConfig.tokenSymbol)
-        tokenAmount = new BigNumber(lpTokenBalanceMC).div(new BigNumber(10).pow(tokenDecimals))
-        // console.log("tokenAmount",tokenAmount.toString())
+        if (farmConfig.tokenSymbol === "SHRIMP") { 
+          // We need to remove the inital minting
+          const initialMint = 21000000*0.9
+          const initialRewardPerBlock = 21.875
+          
+          const startBlock = 6757600
+          const web3 = getWeb3()
+          const currentBlock = await web3.eth.getBlockNumber()
+          // console.log("currentBlock",currentBlock)
+          const blocksRewarded = currentBlock - startBlock
+          // console.log("blocksRewarded",blocksRewarded)
+          const rewardPerBlockNow = initialRewardPerBlock*(1-blocksRewarded/1728000)
+          // console.log("rewardPerBlockNow",rewardPerBlockNow)
+          const paidRewards = rewardPerBlockNow * blocksRewarded + (initialRewardPerBlock - rewardPerBlockNow) *  blocksRewarded / 2
+          // console.log("actualRewards",paidRewards)
+          const toDistribute = initialMint - paidRewards
+          // console.log("initialMint",initialMint)
+          // console.log("toDistribute",toDistribute)
+          // console.log("token in MC:", new BigNumber(lpTokenBalanceMC).div(new BigNumber(10).pow(tokenDecimals)).toString())
+          tokenAmount = new BigNumber(lpTokenBalanceMC).div(new BigNumber(10).pow(tokenDecimals)).minus(toDistribute)
+          // console.log("tokenAmount",tokenAmount.toString())
+        } else {
+          tokenAmount = new BigNumber(lpTokenBalanceMC).div(new BigNumber(10).pow(tokenDecimals))
+        }
+         // console.log("tokenAmount",tokenAmount.toString())
         if (farmConfig.tokenSymbol === QuoteToken.BUSD && farmConfig.quoteTokenSymbol === QuoteToken.BUSD) {
           tokenPriceVsQuote = new BigNumber(1)
         } else {
-          // console.log("quoteTokenBlanceLP",quoteTokenBlanceLP.toString())
+           // console.log("quoteTokenBlanceLP",quoteTokenBlanceLP.toString())
           const quoteTokenBlanceLPDecimalAdjusted = new BigNumber(quoteTokenBlanceLP).div(
             new BigNumber(10).pow(quoteTokenDecimals),
           )
-          // console.log("quoteTokenBlanceLPDecimalAdjusted",quoteTokenBlanceLPDecimalAdjusted.toString())
-          // console.log("tokenBalanceLP",new BigNumber(tokenBalanceLP).toString())
+           // console.log("quoteTokenBlanceLPDecimalAdjusted",quoteTokenBlanceLPDecimalAdjusted.toString())
+           // console.log("tokenBalanceLP",new BigNumber(tokenBalanceLP).toString())
           const tokenBalanceLPAdjusted = new BigNumber(tokenBalanceLP).div(new BigNumber(10).pow(tokenDecimals))
-          // console.log("tokenBalanceLPAdjusted", tokenBalanceLPAdjusted.toString())
+           // console.log("tokenBalanceLPAdjusted", tokenBalanceLPAdjusted.toString())
           tokenPriceVsQuote = quoteTokenBlanceLPDecimalAdjusted.div(tokenBalanceLPAdjusted)
-          // console.log("tokenPriceVsQuote",tokenPriceVsQuote.toString())
+           // console.log("tokenPriceVsQuote",tokenPriceVsQuote.toString())
         }
         lpTotalInQuoteToken = tokenAmount.times(tokenPriceVsQuote)
-        // console.log("lpTotalInQuoteToken",lpTotalInQuoteToken.toString())
+         // console.log("lpTotalInQuoteToken",lpTotalInQuoteToken.toString())
       } else {
         // Ratio in % a LP tokens that are in staking, vs the total number in circulation
         const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
