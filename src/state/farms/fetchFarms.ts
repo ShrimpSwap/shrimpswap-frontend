@@ -7,7 +7,6 @@ import farmsConfig from 'config/constants/farms'
 import { QuoteToken } from '../../config/constants/types'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-console.log('chain:', CHAIN_ID)
 
 const fetchFarms = async () => {
   const data = await Promise.all(
@@ -30,7 +29,7 @@ const fetchFarms = async () => {
         {
           address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses[CHAIN_ID] : lpAdress,
           name: 'balanceOf',
-          params: [getMasterShrimpAddress()], 
+          params: [getMasterShrimpAddress()],
         },
         // Total supply of LP tokens
         {
@@ -67,7 +66,9 @@ const fetchFarms = async () => {
           tokenPriceVsQuote = new BigNumber(1)
         } else {
           // console.log("quoteTokenBlanceLP",quoteTokenBlanceLP.toString())
-          const quoteTokenBlanceLPDecimalAdjusted = new BigNumber(quoteTokenBlanceLP).div(new BigNumber(10).pow(quoteTokenDecimals))
+          const quoteTokenBlanceLPDecimalAdjusted = new BigNumber(quoteTokenBlanceLP).div(
+            new BigNumber(10).pow(quoteTokenDecimals),
+          )
           // console.log("quoteTokenBlanceLPDecimalAdjusted",quoteTokenBlanceLPDecimalAdjusted.toString())
           // console.log("tokenBalanceLP",new BigNumber(tokenBalanceLP).toString())
           const tokenBalanceLPAdjusted = new BigNumber(tokenBalanceLP).div(new BigNumber(10).pow(tokenDecimals))
