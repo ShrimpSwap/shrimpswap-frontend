@@ -18,7 +18,8 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
-  const fullBalance = useMemo(() => getFullDisplayBalance(max), [max])
+  const fullBalance = useMemo(() => getFullDisplayBalance(max, tokenName === "DOGE" ? 8 : 18), [max, tokenName])
+  console.log("fullBalance",fullBalance)
 
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
