@@ -97,6 +97,11 @@ const config: MenuEntry[] = [
     icon: 'GitbookIcon',
   },
   {
+    label: 'Roadmap',
+    href: 'https://shrimpswap.gitbook.io/shrimpswap/roadmap',
+    icon: 'RoadmapIcon',
+  },
+  {
     label: 'Blog',
     href: 'https://medium.com/@shrimpyswap',
     icon: 'MediumIcon',
