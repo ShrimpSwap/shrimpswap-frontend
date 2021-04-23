@@ -99,7 +99,7 @@ const config: MenuEntry[] = [
   {
     label: 'Roadmap',
     href: 'https://shrimpswap.gitbook.io/shrimpswap/roadmap',
-    icon: 'GitbookIcon',
+    icon: 'RoadmapIcon',
   },
   {
     label: 'Blog',
