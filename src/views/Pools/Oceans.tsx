@@ -75,15 +75,14 @@ const Farm: React.FC = () => {
       <Hero>
         <div>
           <Heading as="h1" size="xxl" mb="16px">
-            {TranslateString(282, 'Oceans')}
+            {TranslateString(282, '🐳 Oceans')}
           </Heading>
           <ul>
-            <li>{TranslateString(580, 'Stake SHRIMP to earn new tokens.')}</li>
-            <li>{TranslateString(404, 'You can unstake at any time.')}</li>
-            <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
+            <li>Stake 🦐 $SHRIMP to earn new tokens.</li>
+            <li>Rewards are calculated per block.</li>
           </ul>
         </div>
-        <img src="/images/ocean.png" alt="icean pool icon" width={435} height={218} />
+        <img src="/images/ocean.svg" alt="ocean pool icon" width={200} height={200} />
       </Hero>
       <PoolTabButtons />
       <Divider />
@@ -93,7 +92,6 @@ const Farm: React.FC = () => {
             {orderBy(openPools, ['sortOrder']).map((pool) => (
               <PoolCard key={pool.sousId} pool={pool} />
             ))}
-            <Coming />
           </>
         </Route>
         <Route path={`${path}/history`}>
