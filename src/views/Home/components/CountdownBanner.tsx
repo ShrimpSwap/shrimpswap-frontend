@@ -29,7 +29,7 @@ const CountdownBanner = () => (
   <StyledCountdownBanner>
     <Container>
       <Flex alignItems="center" justifyContent={['center', 'center', null, 'start']}>
-        <Countdown>Farms and pools are now opened!</Countdown>
+        <Countdown>Farms, pools and oceans are now opened!</Countdown>
       </Flex>
     </Container>
   </StyledCountdownBanner>
