@@ -25,7 +25,14 @@ const IconButtonWrapper = styled.div`
   }
 `
 
-const StakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalance, tokenName, pid, depositFeeBP, decimals }) => {
+const StakeAction: React.FC<FarmCardActionsProps> = ({
+  stakedBalance,
+  tokenBalance,
+  tokenName,
+  pid,
+  depositFeeBP,
+  decimals,
+}) => {
   const TranslateString = useI18n()
   const { onStake } = useStake(pid)
   const { onUnstake } = useUnstake(pid)
