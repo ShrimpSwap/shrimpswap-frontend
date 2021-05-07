@@ -15,6 +15,7 @@ interface FarmCardActionsProps {
   tokenName?: string
   pid?: number
   depositFeeBP?: number
+  decimals: number
 }
 
 const IconButtonWrapper = styled.div`
@@ -24,12 +25,12 @@ const IconButtonWrapper = styled.div`
   }
 `
 
-const StakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalance, tokenName, pid, depositFeeBP }) => {
+const StakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalance, tokenName, pid, depositFeeBP, decimals }) => {
   const TranslateString = useI18n()
   const { onStake } = useStake(pid)
   const { onUnstake } = useUnstake(pid)
 
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const rawStakedBalance = getBalanceNumber(stakedBalance, decimals)
   const displayBalance = rawStakedBalance.toLocaleString()
 
   const [onPresentDeposit] = useModal(

@@ -34,6 +34,10 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
   const tokenAddress = tokenAddresses[process.env.REACT_APP_CHAIN_ID]
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
+  const decimals = farm.tokenDecimals ? farm.tokenDecimals : 18
+  console.log("lpName", lpName)
+  console.log("stakedBalance", stakedBalance.toString())
+  console.log("decimals", decimals.toString())
 
   const lpContract = useMemo(() => {
     if (isTokenOnly) {
@@ -62,6 +66,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
         tokenName={lpName}
         pid={pid}
         depositFeeBP={depositFeeBP}
+        decimals={decimals}
       />
     ) : (
       <Button mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
