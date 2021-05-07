@@ -8,6 +8,7 @@ import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useFarmUser } from 'state/hooks'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -96,6 +97,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
+  const { stakedBalance } = useFarmUser(farm.pid)
+    
   // const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
@@ -119,6 +122,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     }
     return farm.lpTotalInQuoteToken
   }, [bnbPrice, cakePrice, ethPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
+
+  const stakedBalancePercentageFormated = stakedBalance
+    ? Number(stakedBalance.div(farm.tokenAmountRaw).times(100)).toLocaleString(undefined, {
+        maximumFractionDigits: 0,
+      })
+    : '-'
+
+  const stakedBalanceInUSDFormated = stakedBalancePercentageFormated
+    ? `$${Number(stakedBalance.div(farm.tokenAmountRaw).times(totalValue)).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    : '-'
 
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
@@ -166,10 +179,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         </Flex>
       )}
       {!removed && (
-        <Flex justifyContent="space-between">
-          <Text>{TranslateString(23, 'Total Liquidity')}:</Text>
-          <Text bold>{totalValueFormated}</Text>
-        </Flex>
+        <>
+          <Flex justifyContent="space-between">
+            <Text>{TranslateString(23, 'Your Liquidity')}:</Text>
+            <Text bold>{`${stakedBalanceInUSDFormated} (${stakedBalancePercentageFormated}%)`}</Text>
+          </Flex>
+          <Flex justifyContent="space-between">
+            <Text>{TranslateString(23, 'Total Liquidity')}:</Text>
+            <Text bold>{totalValueFormated}</Text>
+          </Flex>
+        </>
       )}
       <Flex justifyContent="space-between">
         <Text>{TranslateString(318, 'Earn')}:</Text>

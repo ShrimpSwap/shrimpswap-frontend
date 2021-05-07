@@ -1,4 +1,3 @@
-import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import masterShrimpABI from 'config/abi/masterShrimp.json'
@@ -61,23 +60,16 @@ const fetchFarms = async () => {
       let tokenPriceVsQuote
       if (farmConfig.isTokenOnly) {
         tokenAmount = new BigNumber(lpTokenBalanceMC).div(new BigNumber(10).pow(tokenDecimals))
-        // console.log("tokenAmount",tokenAmount.toString())
         if (farmConfig.tokenSymbol === QuoteToken.BUSD && farmConfig.quoteTokenSymbol === QuoteToken.BUSD) {
           tokenPriceVsQuote = new BigNumber(1)
         } else {
-          // console.log("quoteTokenBlanceLP",quoteTokenBlanceLP.toString())
           const quoteTokenBlanceLPDecimalAdjusted = new BigNumber(quoteTokenBlanceLP).div(
             new BigNumber(10).pow(quoteTokenDecimals),
           )
-          // console.log("quoteTokenBlanceLPDecimalAdjusted",quoteTokenBlanceLPDecimalAdjusted.toString())
-          // console.log("tokenBalanceLP",new BigNumber(tokenBalanceLP).toString())
           const tokenBalanceLPAdjusted = new BigNumber(tokenBalanceLP).div(new BigNumber(10).pow(tokenDecimals))
-          // console.log("tokenBalanceLPAdjusted", tokenBalanceLPAdjusted.toString())
           tokenPriceVsQuote = quoteTokenBlanceLPDecimalAdjusted.div(tokenBalanceLPAdjusted)
-          // console.log("tokenPriceVsQuote",tokenPriceVsQuote.toString())
         }
         lpTotalInQuoteToken = tokenAmount.times(tokenPriceVsQuote)
-        // console.log("lpTotalInQuoteToken",lpTotalInQuoteToken.toString())
       } else {
         // Ratio in % a LP tokens that are in staking, vs the total number in circulation
         const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
@@ -135,6 +127,8 @@ const fetchFarms = async () => {
       return {
         ...farmConfig,
         tokenAmount: tokenAmount.toJSON(),
+        tokenAmountRaw: new BigNumber(lpTokenBalanceMC).toJSON(),
+        tokenDecimals: new BigNumber(tokenDecimals).toNumber(),
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: tokenPriceVsQuote.toJSON(),
         poolWeight: poolWeight.toNumber(),
