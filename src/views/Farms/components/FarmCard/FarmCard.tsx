@@ -98,21 +98,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const { stakedBalance } = useFarmUser(farm.pid)
-
-  let stakedBalanceInUSD: BigNumber
-  if (farm.isTokenOnly) {
-    stakedBalanceInUSD = new BigNumber(stakedBalance).div(new BigNumber(10).pow(18)).times(farm.tokenPriceVsQuote)
-  } else {
-    stakedBalanceInUSD = new BigNumber(stakedBalance)
-      .div(new BigNumber(10).pow(18))
-      .times(new BigNumber(2))
-      .times(farm.tokenPriceVsQuote)
-  }
-
-  const stakedBalanceInUSDFormated = stakedBalanceInUSD
-    ? `$${Number(stakedBalanceInUSD).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
-
+    
   // const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
@@ -137,10 +123,14 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     return farm.lpTotalInQuoteToken
   }, [bnbPrice, cakePrice, ethPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
 
-  const stakedBalancePercentageFormated = stakedBalanceInUSD
-    ? Number(stakedBalanceInUSD.div(totalValue).times(100)).toLocaleString(undefined, {
+  const stakedBalancePercentageFormated = stakedBalance
+    ? Number(stakedBalance.div(farm.tokenAmountRaw).times(100)).toLocaleString(undefined, {
         maximumFractionDigits: 0,
       })
+    : '-'
+
+  const stakedBalanceInUSDFormated = stakedBalancePercentageFormated
+    ? `$${Number(stakedBalance.div(farm.tokenAmountRaw).times(totalValue)).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
   const totalValueFormated = totalValue
