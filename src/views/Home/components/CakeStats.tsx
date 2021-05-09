@@ -3,7 +3,7 @@ import { Card, CardBody, Heading, Text } from '@shrimpswap/uikit'
 import BigNumber from 'bignumber.js/bignumber'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupply, useBurnedBalance, useMaxSupply } from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
 import { getShrimpAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
@@ -27,6 +27,7 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getShrimpAddress())
   const farms = useFarms()
+  const maxSupply = useMaxSupply()
 
   const shrimpSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
 
@@ -53,6 +54,12 @@ const CakeStats = () => {
           <Text fontSize="14px">{TranslateString(540, 'New SHRIMP per block')}</Text>
           <Text bold fontSize="14px">
             {shrimpPerBlock}
+          </Text>
+        </Row>
+        <Row>
+          <Text fontSize="14px">Max SHRIMP supply</Text>
+          <Text bold fontSize="14px">
+            {maxSupply}
           </Text>
         </Row>
       </CardBody>

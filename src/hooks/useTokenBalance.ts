@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
@@ -8,6 +8,7 @@ import { getTokenBalance } from 'utils/erc20'
 import multicall from 'utils/multicall'
 import erc20 from 'config/abi/erc20.json'
 import { getShrimpAddress } from 'utils/addressHelpers'
+import { useCountUp } from 'react-countup'
 import useRefresh from './useRefresh'
 
 const useTokenBalance = (tokenAddress: string) => {
@@ -44,6 +45,23 @@ export const useTotalSupply = () => {
   }, [slowRefresh])
 
   return totalSupply
+}
+
+export const useMaxSupply = () => {
+  const value = 21000000;
+  const { countUp, update } = useCountUp({
+    start: 0,
+    end: value,
+    duration: 2,
+    separator: ',',
+  })
+  const updateValue = useRef(update)
+
+  useEffect(() => {
+    updateValue.current(value)
+  }, [value, updateValue])
+
+  return countUp
 }
 
 export const useBurnedBalance = (tokenAddress: string) => {
