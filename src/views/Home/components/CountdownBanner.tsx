@@ -2,7 +2,6 @@ import React from 'react'
 import { Flex } from '@shrimpswap/uikit'
 import styled from 'styled-components'
 import PageContainer from 'components/layout/Container'
-import moment from 'moment'
 
 const StyledCountdownBanner = styled.div`
   background: #21223b;
