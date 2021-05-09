@@ -56,28 +56,28 @@ const config: MenuEntry[] = [
   //   href: '/nft',
   // },
   {
+    label: 'Listings',
+    icon: 'ListingIcon',
+    items: [
+      // {
+      //   label: 'CoinMarketCap',
+      //   href: 'https://coinmarketcap.com/currencies/shrimpswap-finance',
+      // },
+      // {
+      //   label: 'CoinGecko',
+      //   href: 'https://www.coingecko.com/en/coins/shrimpswap',
+      // },
+      {
+        label: 'DappRadar',
+        href: 'https://dappradar.com/binance-smart-chain/defi/shrimpswap',
+      },
+    ],
+  },
+  {
     label: 'Price',
     icon: 'GraphIcon',
     href: '/graph',
   },
-  // {
-  //   label: 'Listings',
-  //   icon: 'ListingIcon',
-  //   items: [
-  //     {
-  //       label: 'CoinMarketCap',
-  //       href: 'https://coinmarketcap.com/currencies/shrimpswap-finance',
-  //     },
-  //     {
-  //       label: 'CoinGecko',
-  //       href: 'https://www.coingecko.com/en/coins/shrimpswap',
-  //     },
-  //     {
-  //       label: 'DappRadar',
-  //       href: 'https://dappradar.com/binance-smart-chain/defi/shrimpswap',
-  //     },
-  //   ],
-  // },
   // {
   //   label: 'More',
   //   icon: 'MoreIcon',
@@ -92,20 +92,20 @@ const config: MenuEntry[] = [
     icon: 'GithubIcon',
   },
   {
-    label: 'Docs',
-    href: 'https://shrimpswap.gitbook.io',
-    icon: 'GitbookIcon',
-  },
-  {
     label: 'Roadmap',
     href: 'https://shrimpswap.gitbook.io/shrimpswap/roadmap',
     icon: 'RoadmapIcon',
   },
   {
-    label: 'Blog',
-    href: 'https://medium.com/@shrimpyswap',
-    icon: 'MediumIcon',
+    label: 'Docs',
+    href: 'https://shrimpswap.gitbook.io',
+    icon: 'GitbookIcon',
   },
+  // {
+  //   label: 'Blog',
+  //   href: 'https://medium.com/@shrimpyswap',
+  //   icon: 'MediumIcon',
+  // },
   // ],
   // },
 ]
