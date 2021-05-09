@@ -4,22 +4,23 @@ import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex } from '@shrimpswap/uikit'
 import useI18n from 'hooks/useI18n'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { calculateCakeEarnedPerThousandDollars, apyModalRoi } from 'utils/compoundApyHelpers'
+import { apyModalRoi, calculateShrimpEarned, formatROI } from 'utils/compoundApyHelpers'
 import { Address } from 'config/constants/types'
 
 interface ApyCalculatorModalProps {
-  onDismiss?: () => void
-  lpLabel?: string
-  cakePrice?: BigNumber
   apy?: BigNumber
+  shrimpPrice?: BigNumber
+  lpLabel?: string
   quoteTokenAdresses?: Address
   quoteTokenSymbol?: string
   tokenAddresses: Address
+  stakedBalanceInUSD?: BigNumber
+  onDismiss?: () => void
 }
 
-const Grid = styled.div`
+const Grid = styled.div<{ hasStakedBalance: boolean }>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(${({ hasStakedBalance }) => (hasStakedBalance ? 4 : 3)}, 1fr);
   grid-template-rows: repeat(4, auto);
   margin-bottom: 24px;
 `
@@ -29,32 +30,58 @@ const GridItem = styled.div`
 `
 
 const Description = styled(Text)`
-  max-width: 320px;
+  max-width: 480px;
   margin-bottom: 28px;
 `
 
 const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
-  onDismiss,
+  apy,
+  shrimpPrice,
   lpLabel,
   quoteTokenAdresses,
   quoteTokenSymbol,
+  stakedBalanceInUSD,
   tokenAddresses,
-  cakePrice,
-  apy,
+  onDismiss,
 }) => {
   const TranslateString = useI18n()
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const farmApy = apy.times(new BigNumber(100)).toNumber()
-  const oneThousandDollarsWorthOfCake = 1000 / cakePrice.toNumber()
+  const oneThousandDollarsWorthOfCake = 1000 / shrimpPrice.toNumber()
 
-  const cakeEarnedPerThousand1D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 1, farmApy, cakePrice })
-  const cakeEarnedPerThousand7D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 7, farmApy, cakePrice })
-  const cakeEarnedPerThousand30D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 30, farmApy, cakePrice })
-  const cakeEarnedPerThousand365D = calculateCakeEarnedPerThousandDollars({ numberOfDays: 365, farmApy, cakePrice })
+  const shrimpEarnedPerThousand1D = calculateShrimpEarned({ numberOfDays: 1, farmApy, shrimpPrice })
+  const shrimpEarnedPerThousand7D = calculateShrimpEarned({ numberOfDays: 7, farmApy, shrimpPrice })
+  const shrimpEarnedPerThousand30D = calculateShrimpEarned({ numberOfDays: 30, farmApy, shrimpPrice })
+  const shrimpEarnedPerThousand365D = calculateShrimpEarned({ numberOfDays: 365, farmApy, shrimpPrice })
+
+  const shrimpEarnedPerStakedAmount1D = calculateShrimpEarned({
+    numberOfDays: 1,
+    farmApy,
+    shrimpPrice,
+    principalAmount: Number(stakedBalanceInUSD),
+  })
+  const shrimpEarnedPerStakedAmount7D = calculateShrimpEarned({
+    numberOfDays: 7,
+    farmApy,
+    shrimpPrice,
+    principalAmount: Number(stakedBalanceInUSD),
+  })
+  const shrimpEarnedPerStakedAmount30D = calculateShrimpEarned({
+    numberOfDays: 30,
+    farmApy,
+    shrimpPrice,
+    principalAmount: Number(stakedBalanceInUSD),
+  })
+  const shrimpEarnedPerStakedAmount365D = calculateShrimpEarned({
+    numberOfDays: 365,
+    farmApy,
+    shrimpPrice,
+    principalAmount: Number(stakedBalanceInUSD),
+  })
 
   return (
     <Modal title="ROI" onDismiss={onDismiss}>
-      <Grid>
+      <Grid hasStakedBalance={!stakedBalanceInUSD.isZero()}>
         <GridItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
             {TranslateString(999, 'Timeframe')}
@@ -70,54 +97,81 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             {TranslateString(999, 'SHRIMP per $1000')}
           </Text>
         </GridItem>
+        {!stakedBalanceInUSD.isZero() && (
+          <GridItem>
+            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
+              {`Shrimp per $${Number(stakedBalanceInUSD).toLocaleString(undefined, { maximumFractionDigits: 0 })}`}
+            </Text>
+          </GridItem>
+        )}
         {/* 1 day row */}
         <GridItem>
           <Text>1d</Text>
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: shrimpEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfCake })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand1D}</Text>
+          <Text>{formatROI(shrimpEarnedPerThousand1D, shrimpPrice)}</Text>
         </GridItem>
+        {!stakedBalanceInUSD.isZero() && (
+          <GridItem>
+            <Text>{formatROI(shrimpEarnedPerStakedAmount1D, shrimpPrice)}</Text>
+          </GridItem>
+        )}
         {/* 7 day row */}
         <GridItem>
           <Text>7d</Text>
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: shrimpEarnedPerThousand7D, amountInvested: oneThousandDollarsWorthOfCake })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand7D}</Text>
+          <Text>{formatROI(shrimpEarnedPerThousand7D, shrimpPrice)}</Text>
         </GridItem>
+        {!stakedBalanceInUSD.isZero() && (
+          <GridItem>
+            <Text>{formatROI(shrimpEarnedPerStakedAmount7D, shrimpPrice)}</Text>
+          </GridItem>
+        )}
         {/* 30 day row */}
         <GridItem>
           <Text>30d</Text>
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: shrimpEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfCake })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand30D}</Text>
+          <Text>{formatROI(shrimpEarnedPerThousand30D, shrimpPrice)}</Text>
         </GridItem>
+        {!stakedBalanceInUSD.isZero() && (
+          <GridItem>
+            <Text>{formatROI(shrimpEarnedPerStakedAmount30D, shrimpPrice)}</Text>
+          </GridItem>
+        )}
         {/* 365 day / APY row */}
         <GridItem>
           <Text>365d</Text>
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: cakeEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfCake })}%
+            {apyModalRoi({ amountEarned: shrimpEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfCake })}%
           </Text>
         </GridItem>
         <GridItem>
-          <Text>{cakeEarnedPerThousand365D}</Text>
+          <Text>{formatROI(shrimpEarnedPerThousand365D, shrimpPrice)}</Text>
         </GridItem>
+        {!stakedBalanceInUSD.isZero() && (
+          <GridItem>
+            <Text>{formatROI(shrimpEarnedPerStakedAmount365D, shrimpPrice)}</Text>
+          </GridItem>
+        )}
       </Grid>
       <Description fontSize="12px" color="textSubtle">
         {TranslateString(
