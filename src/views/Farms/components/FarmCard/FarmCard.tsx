@@ -124,7 +124,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
 
   const stakedBalancePercentageFormated = stakedBalance
     ? Number(stakedBalance.div(farm.tokenAmountRaw).times(100)).toLocaleString(undefined, {
-        maximumFractionDigits: 0,
+        maximumFractionDigits: 2,
       })
     : '-'
 
