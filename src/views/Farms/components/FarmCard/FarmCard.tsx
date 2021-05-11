@@ -128,8 +128,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       })
     : '-'
 
+  const stakedBalanceInUSD = stakedBalance.div(farm.tokenAmountRaw).times(totalValue)
   const stakedBalanceInUSDFormated = stakedBalancePercentageFormated
-    ? `$${Number(stakedBalance.div(farm.tokenAmountRaw).times(totalValue)).toLocaleString(undefined, {
+    ? `$${Number(stakedBalanceInUSD).toLocaleString(undefined, {
         maximumFractionDigits: 0,
       })}`
     : '-'
@@ -168,7 +169,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
                   quoteTokenAdresses={quoteTokenAdresses}
                   quoteTokenSymbol={quoteTokenSymbol}
                   tokenAddresses={tokenAddresses}
-                  cakePrice={cakePrice}
+                  shrimpPrice={cakePrice}
+                  stakedBalanceInUSD={stakedBalanceInUSD}
                   apy={farm.apy}
                 />
                 {farmAPY}%
