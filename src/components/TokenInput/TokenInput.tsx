@@ -23,6 +23,7 @@ const TokenInput: React.FC<TokenInputProps> = ({
   burnFee = 0,
 }) => {
   const TranslateString = useI18n()
+
   return (
     <StyledTokenInput>
       <StyledMaxText>
