@@ -26,6 +26,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 10,
   },
+  {
+    sousId: 1,
+    tokenName: 'CAKE',
+    stakingTokenName: QuoteToken.SHRIMP,
+    stakingTokenAddress: {
+      97: '',
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+    },
+    contractAddress: {
+      97: '',
+      56: '0x21816301F7E340FFa47113f05286ab460998b437', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '',
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // CAKE
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://pancakeswap.finance/',
+    harvest: true,
+    tokenPerBlock: '0.000133680555555555',
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 20,
+  },
 ]
 
 export default pools

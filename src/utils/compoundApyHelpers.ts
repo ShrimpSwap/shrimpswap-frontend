@@ -1,4 +1,4 @@
-import BigNumber from "bignumber.js"
+import BigNumber from 'bignumber.js'
 
 const roundToTwoDp = (number) => Math.round(number * 100) / 100
 
