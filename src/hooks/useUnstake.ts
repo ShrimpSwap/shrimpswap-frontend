@@ -16,8 +16,8 @@ const useUnstake = (pid: number) => {
   const masterShrimpContract = useMasterShrimp()
 
   const handleUnstake = useCallback(
-    async (amount: string) => {
-      const txHash = await unstake(masterShrimpContract, pid, amount, account)
+    async (amount: string, decimals: number) => {
+      const txHash = await unstake(masterShrimpContract, pid, amount, account, decimals)
       dispatch(fetchFarmUserDataAsync(account))
       console.info(txHash)
     },
