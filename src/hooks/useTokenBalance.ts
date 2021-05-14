@@ -48,7 +48,7 @@ export const useTotalSupply = () => {
 }
 
 export const useMaxSupply = () => {
-  const value = 21000000;
+  const value = 21000000
   const { countUp, update } = useCountUp({
     start: 0,
     end: value,
