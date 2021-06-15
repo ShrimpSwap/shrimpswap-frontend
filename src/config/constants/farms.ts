@@ -233,6 +233,25 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
     whale: true,
   },
+  {
+    key: 1,
+    pid: 1,
+    isTokenOnly: false,
+    lpSymbol: 'SALT-BUSD',
+    lpAddresses: {
+      97: '0xf62e8d3EcA464C9Fa9D46f169211eF4a41E41fE8',
+      56: '0x6596f770786915556C47E301cC8290aa14288d99',
+    },
+    tokenSymbol: 'SALT',
+    tokenAddresses: {
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
+  },
 ].filter((f) => f.lpAddresses[CHAIN_ID])
 
 export default farms

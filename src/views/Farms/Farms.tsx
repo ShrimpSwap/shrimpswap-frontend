@@ -8,7 +8,7 @@ import { Heading } from '@shrimpswap/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBnbBusd, usePriceShrimpBusd, usePriceEthBusd } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePriceShrimpBusd, usePriceWhaleBusd, usePriceEthBusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
@@ -45,6 +45,7 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
   const shrimpPrice = usePriceShrimpBusd()
+  const whalePrice = usePriceWhaleBusd()
   const bnbPrice = usePriceBnbBusd()
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
@@ -79,10 +80,9 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
         const shrimpRewardPerBlock = new BigNumber(farm.shrimpPerBlock || 1)
           .times(new BigNumber(farm.poolWeight))
           .div(new BigNumber(10).pow(18))
-        console.log('shrimpRewardPerBlock', shrimpRewardPerBlock)
         const shrimpRewardPerYear = shrimpRewardPerBlock.times(BLOCKS_PER_YEAR)
-
-        let apy = shrimpPrice.times(shrimpRewardPerYear)
+        const farmedTokenPrice = farm.whale ? whalePrice : shrimpPrice
+        let apy = farmedTokenPrice.times(shrimpRewardPerYear)
 
         let totalValue = new BigNumber(farm.lpTotalInQuoteToken || 0)
 
@@ -104,14 +104,14 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
           farm={farm}
           removed={removed}
           bnbPrice={bnbPrice}
-          cakePrice={shrimpPrice}
+          cakePrice={farm.whale? whalePrice : shrimpPrice}
           ethPrice={ethPriceUsd}
           ethereum={ethereum}
           account={account}
         />
       ))
     },
-    [bnbPrice, account, shrimpPrice, ethPriceUsd, ethereum],
+    [bnbPrice, account, shrimpPrice, whalePrice, ethPriceUsd, ethereum],
   )
 
   return (

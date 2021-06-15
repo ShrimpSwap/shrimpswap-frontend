@@ -68,6 +68,15 @@ export const usePriceShrimpBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
+export const usePriceWhaleBusd = (): BigNumber => {
+  const key = 1 // WHALE-BUSD LP // TODO: find the correct KEY / PID
+  const farm = useFarmFromKey(key)
+
+  if (!farm) return ZERO
+
+  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+}
+
 export const usePriceShrimpBnb = (): BigNumber => {
   const key = 20 // SHRIMP-BNB LP
   const farm = useFarmFromKey(key)
