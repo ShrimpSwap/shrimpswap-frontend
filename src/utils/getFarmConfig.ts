@@ -1,5 +1,5 @@
 import { farmsConfig } from 'config/constants'
 
-const getFarmConfig = (pid: number) => farmsConfig.find((f) => f.pid === pid)
+const getFarmConfig = (key: number) => farmsConfig.find((f) => f.key === key)
 
 export default getFarmConfig

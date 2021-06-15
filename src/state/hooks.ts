@@ -23,14 +23,14 @@ export const useFetchPublicData = () => {
 
 export const useFarms = (): Farm[] => useSelector((state: State) => state.farms.data)
 
-export const useFarmFromPid = (pid: number): Farm =>
-  useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
+export const useFarmFromKey = (key: number): Farm =>
+  useSelector((state: State) => state.farms.data.find((f) => f.key === key))
 
 export const useFarmFromSymbol = (lpSymbol: string): Farm =>
   useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
 
-export const useFarmUser = (pid: number) => {
-  const farm = useFarmFromPid(pid)
+export const useFarmUser = (key: number) => {
+  const farm = useFarmFromKey(key)
 
   return {
     allowance: farm.userData ? new BigNumber(farm.userData.allowance) : ZERO,
@@ -60,8 +60,8 @@ export const usePoolFromPid = (sousId: number): Pool =>
 // Prices
 
 export const usePriceShrimpBusd = (): BigNumber => {
-  const pid = 0 // SHRIMP-BUSD LP
-  const farm = useFarmFromPid(pid)
+  const key = 10 // SHRIMP-BUSD LP
+  const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO
 
@@ -69,8 +69,8 @@ export const usePriceShrimpBusd = (): BigNumber => {
 }
 
 export const usePriceShrimpBnb = (): BigNumber => {
-  const pid = 2 // SHRIMP-BNB LP
-  const farm = useFarmFromPid(pid)
+  const key = 20 // SHRIMP-BNB LP
+  const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO
 
@@ -78,8 +78,8 @@ export const usePriceShrimpBnb = (): BigNumber => {
 }
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const pid = 3 // BUSD-BNB LP
-  const farm = useFarmFromPid(pid)
+  const key = 30 // BUSD-BNB LP
+  const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO
 

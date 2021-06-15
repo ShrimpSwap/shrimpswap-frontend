@@ -20,6 +20,7 @@ import Divider from './components/Divider'
 
 export interface FarmsProps {
   tokenMode?: boolean
+  shrimp?: boolean
 }
 
 const Hero = styled.div`
@@ -60,12 +61,12 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   const [stackedOnly, setStackedOnly] = useState(false)
 
-  const activeFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier !== '0X')
-  const inactiveFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier === '0X')
+  const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && farm.whale !== farmsProps.shrimp)
+  const inactiveFarms = farmsLP.filter((farm) => farm.multiplier === '0X')
   const stackedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
-
+  // console.log("farm",activeFarms)
   // /!\ This function will be removed soon
   // This function compute the APY for each farm and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
@@ -78,6 +79,7 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
         const shrimpRewardPerBlock = new BigNumber(farm.shrimpPerBlock || 1)
           .times(new BigNumber(farm.poolWeight))
           .div(new BigNumber(10).pow(18))
+        console.log('shrimpRewardPerBlock', shrimpRewardPerBlock)
         const shrimpRewardPerYear = shrimpRewardPerBlock.times(BLOCKS_PER_YEAR)
 
         let apy = shrimpPrice.times(shrimpRewardPerYear)
@@ -98,7 +100,7 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
       })
       return farmsToDisplayWithAPY.map((farm) => (
         <FarmCard
-          key={farm.pid}
+          key={farm.key}
           farm={farm}
           removed={removed}
           bnbPrice={bnbPrice}

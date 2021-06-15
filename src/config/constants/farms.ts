@@ -5,6 +5,7 @@ const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const farms: FarmConfig[] = [
   {
+    key: 0,
     pid: 0,
     isTokenOnly: true,
     lpSymbol: 'SHRIMP',
@@ -22,6 +23,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 10,
     pid: 1,
     lpSymbol: 'SHRIMP-BUSD',
     lpAddresses: {
@@ -38,6 +40,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 20,
     pid: 2,
     lpSymbol: 'SHRIMP-BNB',
     lpAddresses: {
@@ -54,6 +57,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 30,
     pid: 3,
     lpSymbol: 'BNB-BUSD',
     lpAddresses: {
@@ -70,6 +74,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 40,
     pid: 4,
     lpSymbol: 'ETH-BETH',
     lpAddresses: {
@@ -86,6 +91,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 50,
     pid: 5,
     lpSymbol: 'CAKE-BUSD',
     lpAddresses: {
@@ -102,6 +108,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 60,
     pid: 6,
     isTokenOnly: true,
     lpSymbol: 'BUSD',
@@ -119,6 +126,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 70,
     pid: 7,
     isTokenOnly: true,
     lpSymbol: 'WBNB',
@@ -136,6 +144,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 80,
     pid: 8,
     isTokenOnly: true,
     lpSymbol: 'CAKE',
@@ -153,6 +162,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 90,
     pid: 9,
     isTokenOnly: true,
     lpSymbol: 'DOGE',
@@ -170,6 +180,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 100,
     pid: 10,
     lpSymbol: 'USDT-USDC',
     lpAddresses: {
@@ -186,6 +197,7 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
+    key: 110,
     pid: 11,
     isTokenOnly: true,
     lpSymbol: 'SALT',
@@ -201,6 +213,25 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
     isMasterShrimp: true,
+  },
+  {
+    key: 91,
+    pid: 9,
+    isTokenOnly: true,
+    lpSymbol: 'WBNB',
+    lpAddresses: {
+      97: '',
+      56: '0x1B96B92314C44b159149f7E0303511fB2Fc4774f',
+    },
+    tokenSymbol: 'BNB',
+    tokenAddresses: {
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
+      56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
   },
 ].filter((f) => f.lpAddresses[CHAIN_ID])
 

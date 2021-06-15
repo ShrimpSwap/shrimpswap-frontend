@@ -7,6 +7,7 @@ import {
   getLotteryAddress,
   getLotteryTicketAddress,
   getShrimpAddress,
+  getMasterWhaleAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -78,6 +79,11 @@ export const useLotteryTicket = () => {
 export const useMasterShrimp = () => {
   const abi = (masterShrimpABI as unknown) as AbiItem
   return useContract(abi, getMasterShrimpAddress())
+}
+
+export const useMasterWhale = () => {
+  const abi = (masterShrimpABI as unknown) as AbiItem
+  return useContract(abi, getMasterWhaleAddress())
 }
 
 export const useSmartChef = (id: number) => {

@@ -43,6 +43,7 @@ export interface Address {
 }
 
 export interface FarmConfig {
+  key: number
   pid: number
   lpSymbol: string
   lpAddresses: Address
@@ -60,6 +61,7 @@ export interface FarmConfig {
     earnLabel: string
     endBlock: number
   }
+  whale?: boolean
 }
 
 export interface PoolConfig {

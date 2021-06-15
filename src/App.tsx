@@ -54,6 +54,9 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/farms">
+              <Farms shrimp />
+            </Route>
+            <Route path="/whalefarms">
               <Farms />
             </Route>
             <Route path="/pools">

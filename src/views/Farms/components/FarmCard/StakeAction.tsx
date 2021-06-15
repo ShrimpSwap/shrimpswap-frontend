@@ -16,6 +16,7 @@ interface FarmCardActionsProps {
   pid?: number
   depositFeeBP?: number
   decimals: number
+  masterChef: string
 }
 
 const IconButtonWrapper = styled.div`
@@ -32,9 +33,10 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   pid,
   depositFeeBP,
   decimals,
+  masterChef,
 }) => {
   const TranslateString = useI18n()
-  const { onStake } = useStake(pid)
+  const { onStake } = useStake(pid, masterChef)
   const { onUnstake } = useUnstake(pid)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance, decimals)

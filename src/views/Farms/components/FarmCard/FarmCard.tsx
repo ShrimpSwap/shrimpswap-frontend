@@ -97,7 +97,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const { stakedBalance } = useFarmUser(farm.pid)
+  const { stakedBalance } = useFarmUser(farm.key)
   // const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
@@ -140,7 +140,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
     : '-'
 
   const lpLabel = farm.lpSymbol
-  const earnLabel = 'SHRIMP'
+  const earnLabel = farm.whale ? 'WHALE' : 'SHRIMP'
   const farmAPY =
     farm.apy &&
     farm.apy.times(new BigNumber(100)).toNumber().toLocaleString(undefined, {

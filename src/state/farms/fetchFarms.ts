@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import masterShrimpABI from 'config/abi/masterShrimp.json'
 import multicall from 'utils/multicall'
-import { getMasterShrimpAddress } from 'utils/addressHelpers'
+import { getMasterShrimpAddress, getMasterWhaleAddress } from 'utils/addressHelpers'
 import farmsConfig from 'config/constants/farms'
 import { QuoteToken } from '../../config/constants/types'
 
@@ -29,7 +29,7 @@ const fetchFarms = async () => {
         {
           address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses[CHAIN_ID] : lpAdress,
           name: 'balanceOf',
-          params: [getMasterShrimpAddress()],
+          params: [farmConfig.whale ? getMasterWhaleAddress() : getMasterShrimpAddress()],
         },
         // Total supply of LP tokens
         {
@@ -93,9 +93,17 @@ const fetchFarms = async () => {
         }
       }
 
-      const [info, totalAllocPoint, poolInfo, adjustmentRatio, initialShrimpPerblock] = await multicall(
-        masterShrimpABI,
-        [
+      let info
+      let totalAllocPoint
+      let poolInfo
+      let adjustmentRatio
+      let initialShrimpPerblock
+      let allocPoint
+      let poolWeight
+      let initialShrimpPerBlockFromWei
+
+      if (!farmConfig.whale) {
+        [info, totalAllocPoint, poolInfo, adjustmentRatio, initialShrimpPerblock] = await multicall(masterShrimpABI, [
           {
             address: getMasterShrimpAddress(),
             name: 'poolInfo',
@@ -118,12 +126,35 @@ const fetchFarms = async () => {
             address: getMasterShrimpAddress(),
             name: 'initialShrimpPerBlock',
           },
-        ],
-      )
+        ])
 
-      const allocPoint = new BigNumber(info.allocPoint._hex)
-      const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
-      const initialShrimpPerBlockFromWei = new BigNumber(initialShrimpPerblock).div(new BigNumber(10).pow(18))
+        allocPoint = new BigNumber(info.allocPoint._hex)
+        poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
+        initialShrimpPerBlockFromWei = new BigNumber(initialShrimpPerblock).div(new BigNumber(10).pow(18))
+      } else {
+        [info, totalAllocPoint, poolInfo] = await multicall(masterShrimpABI, [
+          {
+            address: getMasterWhaleAddress(),
+            name: 'poolInfo',
+            params: [farmConfig.pid],
+          },
+          {
+            address: getMasterWhaleAddress(),
+            name: 'totalAllocPoint',
+          },
+          {
+            address: getMasterWhaleAddress(),
+            name: 'poolInfo',
+            params: [farmConfig.pid],
+          },
+        ])
+
+        allocPoint = new BigNumber(info.allocPoint._hex)
+        poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
+        initialShrimpPerBlockFromWei = new BigNumber(10).pow(18)
+        adjustmentRatio = new BigNumber(10).pow(18)
+      }
+
       return {
         ...farmConfig,
         tokenAmount: tokenAmount.toJSON(),
