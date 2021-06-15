@@ -77,7 +77,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
   return (
     <Action>
       <Flex>
-        🦐
+        {farm.whale ? '🐳' : '🦐'}
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
           {farm.whale ? 'whale' : 'shrimp'}
@@ -88,7 +88,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>
-        🦐
+      {farm.whale ? '🐳' : '🦐'}
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
         </Text>
