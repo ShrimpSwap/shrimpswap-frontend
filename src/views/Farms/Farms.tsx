@@ -23,7 +23,7 @@ export interface FarmsProps {
   shrimp?: boolean
 }
 
-const Hero = styled.div`
+const Hero = styled.div<{ whaleMode: boolean }>`
   align-items: center;
   background-repeat: no-repeat;
   background-position: top center;
@@ -33,7 +33,10 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/shrimps-bg-2.svg'), url('/images/shrimps-bg.svg');
+    background-image: ${({ whaleMode }) =>
+      whaleMode
+        ? "url('/images/whales-bg-2.svg'), url('/images/whales-bg.svg')"
+        : "url('/images/shrimps-bg-2.svg'), url('/images/shrimps-bg.svg')"};
     background-position: left center, right center;
     height: 110px;
     padding-top: 0;
@@ -117,10 +120,9 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   return (
     <Page>
-      <Hero>
+      <Hero whaleMode={whaleMode}>
         <Heading as="h1" size="lg" color="primary" mb="10px" style={{ textAlign: 'center' }}>
-            {whaleMode ? "Stake tokens or LP tokens to earn 🐳 WHALE" : "Stake tokens or LP tokens to earn 🦐 SHRIMP"}
-            {/* { tokenMode ? 'Stake tokens to earn 🦐 SHRIMP' : 'Stake LP tokens to earn 🦐 SHRIMP' } */}
+          {`Stake tokens or LP tokens to earn ${whaleMode ? '🐳 WHALE' : '🦐 SHRIMP'}`}
         </Heading>
         <Heading as="h2" color="secondary" mb="20px" style={{ textAlign: 'center' }}>
           {TranslateString(10000, 'Deposit Fee will be used to buyback SHRIMP')}
