@@ -7,7 +7,7 @@ import { getContract } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
 import multicall from 'utils/multicall'
 import erc20 from 'config/abi/erc20.json'
-import { getShrimpAddress } from 'utils/addressHelpers'
+import { getShrimpAddress, getWhaleAddress } from 'utils/addressHelpers'
 import { useCountUp } from 'react-countup'
 import useRefresh from './useRefresh'
 
@@ -37,6 +37,23 @@ export const useTotalSupply = () => {
   useEffect(() => {
     async function fetchTotalSupply() {
       const cakeContract = getContract(cakeABI, getShrimpAddress())
+      const supply = await cakeContract.methods.totalSupply().call()
+      setTotalSupply(new BigNumber(supply))
+    }
+
+    fetchTotalSupply()
+  }, [slowRefresh])
+
+  return totalSupply
+}
+
+export const useTotalWhaleSupply = () => {
+  const { slowRefresh } = useRefresh()
+  const [totalSupply, setTotalSupply] = useState<BigNumber>()
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const cakeContract = getContract(cakeABI, getWhaleAddress())
       const supply = await cakeContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }

@@ -3,6 +3,7 @@ import addresses from 'config/constants/contracts'
 const chainId = process.env.REACT_APP_CHAIN_ID
 
 export const getShrimpAddress = () => addresses.shrimp[chainId]
+export const getWhaleAddress = () => addresses.whale[chainId]
 export const getMasterShrimpAddress = () => addresses.masterShrimp[chainId]
 export const getMasterWhaleAddress = () => addresses.masterWhale[chainId]
 export const getMulticallAddress = () => addresses.mulltiCall[chainId]

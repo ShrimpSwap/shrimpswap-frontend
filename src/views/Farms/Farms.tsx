@@ -122,10 +122,10 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
     <Page>
       <Hero whaleMode={whaleMode}>
         <Heading as="h1" size="lg" color="primary" mb="10px" style={{ textAlign: 'center' }}>
-          {`Stake tokens or PCS LP ${whaleMode ? "V2" : ""} tokens to earn ${whaleMode ? '🐳 WHALE' : '🦐 SHRIMP'}`}
+          {`Stake tokens or PCS LP ${whaleMode ? 'V2' : ''} tokens to earn ${whaleMode ? '🐳 WHALE' : '🦐 SHRIMP'}`}
         </Heading>
         <Heading as="h2" color="secondary" mb="20px" style={{ textAlign: 'center' }}>
-        The Deposit Fee will be used to create Oceans
+          The Deposit Fee will be used to create Oceans
         </Heading>
       </Hero>
       <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
