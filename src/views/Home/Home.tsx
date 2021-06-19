@@ -103,7 +103,7 @@ const Home: React.FC = () => {
           <TotalMarketCapCard />
         </CTACards>
         <Cards>
-          <CakeStats shrimp/>
+          <CakeStats shrimp />
           <CakeStats />
           <TotalValueLockedCard />
         </Cards>

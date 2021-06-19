@@ -9,7 +9,6 @@ import { getShrimpAddress, getWhaleAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 import { useFarms } from '../../../state/hooks'
 
-
 export interface CakeStatsProps {
   shrimp?: boolean
 }
@@ -31,7 +30,7 @@ const CakeStats: React.FC<CakeStatsProps> = (cakeStatsProps) => {
   const whaleMode = !cakeStatsProps.shrimp
   const totalSupplyShrimp = useTotalSupply()
   const totalSupplyWhale = useTotalWhaleSupply()
-  const totalSupply = whaleMode ?  totalSupplyWhale : totalSupplyShrimp
+  const totalSupply = whaleMode ? totalSupplyWhale : totalSupplyShrimp
   const burnedBalanceShrimp = useBurnedBalance(getShrimpAddress())
   const burnedBalanceWhale = useBurnedBalance(getWhaleAddress())
   const burnedBalance = whaleMode ? burnedBalanceWhale : burnedBalanceShrimp
@@ -53,27 +52,29 @@ const CakeStats: React.FC<CakeStatsProps> = (cakeStatsProps) => {
           {TranslateString(534, 'Statistics')}
         </Heading>
         <Row>
-          <Text fontSize="14px">Total {whaleMode ? "WHALE" : "SHRIMP" } Supply</Text>
+          <Text fontSize="14px">Total {whaleMode ? 'WHALE' : 'SHRIMP'} Supply</Text>
           {shrimpSupply && <CardValue fontSize="14px" value={shrimpSupply} decimals={0} />}
         </Row>
         <Row>
-          <Text fontSize="14px">Total {whaleMode ? "WHALE" : "SHRIMP" } Burned</Text>
+          <Text fontSize="14px">Total {whaleMode ? 'WHALE' : 'SHRIMP'} Burned</Text>
           <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
         </Row>
         <Row>
-          <Text fontSize="14px">New {whaleMode ? "WHALE" : "SHRIMP" }</Text>
+          <Text fontSize="14px">New {whaleMode ? 'WHALE' : 'SHRIMP'}</Text>
           <Text bold fontSize="14px">
             {shrimpPerBlock}
           </Text>
         </Row>
-        {whaleMode ? <Row/> : 
-        <Row>
-          <Text fontSize="14px">Max SHRIMP supply</Text>
-          <Text bold fontSize="14px">
-            {maxSupply}
-          </Text>
-        </Row>
-        }
+        {whaleMode ? (
+          <Row />
+        ) : (
+          <Row>
+            <Text fontSize="14px">Max SHRIMP supply</Text>
+            <Text bold fontSize="14px">
+              {maxSupply}
+            </Text>
+          </Row>
+        )}
       </CardBody>
     </StyledCakeStats>
   )

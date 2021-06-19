@@ -118,6 +118,7 @@ export const useTotalValue = (): BigNumber => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const shrimpPrice = usePriceShrimpBusd()
+  const whalePrice = usePriceWhaleBusd()
   const totalValue = useRef(new BigNumber(0))
 
   useEffect(() => {
@@ -129,7 +130,11 @@ export const useTotalValue = (): BigNumber => {
         if (farm.quoteTokenSymbol === QuoteToken.BNB) {
           val = bnbPrice.times(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
-          val = shrimpPrice.times(farm.lpTotalInQuoteToken)
+          if (farm.whale) {
+            val = whalePrice.times(farm.lpTotalInQuoteToken)
+          } else {
+            val = shrimpPrice.times(farm.lpTotalInQuoteToken)
+          }
         } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
           val = ethPrice.times(farm.lpTotalInQuoteToken)
         } else {
@@ -147,12 +152,16 @@ export const useTotalValue = (): BigNumber => {
         const totalShrimpStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
         poolValue = shrimpPrice.times(totalShrimpStaked)
       }
+      if (pool.stakingTokenName === QuoteToken.WHALE) {
+        const totalWhaleStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = whalePrice.times(totalWhaleStaked)
+      }
 
       poolsTotalValue = poolsTotalValue.plus(poolValue ?? ZERO)
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
-  }, [bnbPrice, ethPrice, farms, pools, shrimpPrice])
+  }, [bnbPrice, ethPrice, farms, pools, shrimpPrice, whalePrice])
 
   if (!totalValue) {
     return new BigNumber(0)
