@@ -3,7 +3,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { allLanguages } from 'config/localisation/languageCodes'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
-import { usePriceShrimpBusd } from 'state/hooks'
+import { usePriceShrimpBusd, usePriceWhaleBusd } from 'state/hooks'
 import { Menu as UikitMenu } from '@shrimpswap/uikit'
 import config from './config'
 
@@ -12,6 +12,7 @@ const Menu = (props) => {
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
   const shrimpPriceUsd = usePriceShrimpBusd()
+  const whalePriceUsd = usePriceWhaleBusd()
 
   return (
     <UikitMenu
@@ -23,7 +24,7 @@ const Menu = (props) => {
       currentLang={selectedLanguage && selectedLanguage.code}
       langs={allLanguages}
       setLang={setSelectedLanguage}
-      cakePriceUsd={shrimpPriceUsd.toNumber()}
+      cakePriceUsd={shrimpPriceUsd.toNumber()} // TODO: Change to whale or add both
       links={config}
       priceLink="#"
       {...props}

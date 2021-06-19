@@ -140,7 +140,8 @@ export const useTotalValue = (): BigNumber => {
         } else {
           val = farm.lpTotalInQuoteToken
         }
-        if (val.toString() !== "NaN") { // Somehow .isNan() was not working
+        if (val.toString() !== 'NaN') {
+          // Somehow .isNan() was not working
           farmsTotalValue = farmsTotalValue.plus(val)
         }
       }
