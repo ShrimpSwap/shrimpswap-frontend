@@ -221,7 +221,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'WHALE',
     lpAddresses: {
       97: '',
-      56: '0x93662179C3590D4dA42858ABE917C10542a40831', // TODO: Add LP
+      56: '0x13f0A2cbf6d1090231F3392c4ed2DD5E37AE005F', // TODO: Add LP
     },
     tokenSymbol: 'WHALE',
     tokenAddresses: {
@@ -354,7 +354,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'CAKE',
     lpAddresses: {
       97: '',
-      56: '0x66FDB2eCCfB58cF098eaa419e5EfDe841368e489', // TODO: Add LP
+      56: '0x804678fa97d91b974ec2af3c843270886528a9e6', // TODO: Add LP
     },
     tokenSymbol: 'CAKE',
     tokenAddresses: {

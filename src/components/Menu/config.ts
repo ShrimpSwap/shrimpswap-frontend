@@ -21,19 +21,14 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'Shrimp Farming',
+    label: 'Shrimp Farming ',
     icon: 'FarmIcon',
     href: '/farms',
   },
   {
-    label: 'Whale Farming',
+    label: 'Whale Farming V2',
     icon: 'FarmIcon',
     href: '/whalefarms',
-  },
-  {
-    label: 'Pools',
-    icon: 'PoolIcon',
-    href: '/pools',
   },
   {
     label: 'Oceans',
