@@ -232,7 +232,7 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
     isMasterShrimp: true,
     whale: true,
-  }
+  },
 ].filter((f) => f.lpAddresses[CHAIN_ID])
 
 export default farms
