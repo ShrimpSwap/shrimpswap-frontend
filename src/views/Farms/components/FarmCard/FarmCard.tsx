@@ -138,7 +138,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
-  console.log('farm', farm)
   const lpLabel = farm.lpSymbol
   const earnLabel = farm.whale ? 'WHALE' : 'SHRIMP'
   const farmAPY =
