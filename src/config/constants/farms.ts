@@ -226,7 +226,159 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'WHALE',
     tokenAddresses: {
       97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
-      56: '0x93662179C3590D4dA42858ABE917C10542a40831', // 
+      56: '0x93662179C3590D4dA42858ABE917C10542a40831', //
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 11,
+    pid: 1,
+    isTokenOnly: false,
+    lpSymbol: 'SHRIMP-BUSD',
+    lpAddresses: {
+      97: '',
+      56: '0xb2eae2D811034fB1A75684A919A772e62EF459CB', // TODO: Add LP
+    },
+    tokenSymbol: 'SHRIMP',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', //
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 21,
+    pid: 2,
+    isTokenOnly: false,
+    lpSymbol: 'SHRIMP-BNB',
+    lpAddresses: {
+      97: '',
+      56: '0x4ab549e8edbdeaaca55ad6ae35beb50c92a44d1e', // TODO: Add LP
+    },
+    tokenSymbol: 'SHRIMP',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', //
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 31,
+    pid: 3,
+    isTokenOnly: false,
+    lpSymbol: 'WHALE-BUSD',
+    lpAddresses: {
+      97: '',
+      56: '0x13f0A2cbf6d1090231F3392c4ed2DD5E37AE005F', // TODO: Add LP
+    },
+    tokenSymbol: 'WHALE',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x93662179C3590D4dA42858ABE917C10542a40831', //
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 41,
+    pid: 4,
+    isTokenOnly: false,
+    lpSymbol: 'WHALE-BNB',
+    lpAddresses: {
+      97: '',
+      56: '0xa55cf050eaec79622a168a02c8f94abd4fef1087', // TODO: Add LP
+    },
+    tokenSymbol: 'WHALE',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x93662179C3590D4dA42858ABE917C10542a40831', //
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 51,
+    pid: 5,
+    isTokenOnly: false,
+    lpSymbol: 'CAKE-BUSD',
+    lpAddresses: {
+      97: '',
+      56: '0x804678fa97d91b974ec2af3c843270886528a9e6', // TODO: Add LP
+    },
+    tokenSymbol: 'CAKE',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', //
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 61,
+    pid: 6,
+    isTokenOnly: false,
+    lpSymbol: 'ETH-BETH',
+    lpAddresses: {
+      97: '',
+      56: '0x09eA4c6412943e121352a9D6bb95BF2BcC532547', // TODO: Add LP
+    },
+    tokenSymbol: 'BETH',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x250632378e573c6be1ac2f97fcdf00515d0aa91b', //
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 71,
+    pid: 7,
+    isTokenOnly: true,
+    lpSymbol: 'CAKE',
+    lpAddresses: {
+      97: '',
+      56: '0x66FDB2eCCfB58cF098eaa419e5EfDe841368e489', // TODO: Add LP
+    },
+    tokenSymbol: 'CAKE',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', //
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
+  },
+  {
+    key: 81,
+    pid: 8,
+    isTokenOnly: false,
+    lpSymbol: 'BUSD-DAI',
+    lpAddresses: {
+      97: '',
+      56: '0x66FDB2eCCfB58cF098eaa419e5EfDe841368e489', // TODO: Add LP
+    },
+    tokenSymbol: 'BUSD',
+    tokenAddresses: {
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', //
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
