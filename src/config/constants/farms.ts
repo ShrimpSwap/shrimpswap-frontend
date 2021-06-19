@@ -233,6 +233,25 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
     whale: true,
   },
+  {
+    key: 11,
+    pid: 1,
+    isTokenOnly: false,
+    lpSymbol: 'CAKE-BUSD',
+    lpAddresses: {
+      97: '',
+      56: '0x804678fa97d91B974ec2af3c843270886528a9E6',
+    },
+    tokenSymbol: 'CAKE',
+    tokenAddresses: {
+      97: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // FIXME:
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    isMasterShrimp: true,
+    whale: true,
+  },
 ].filter((f) => f.lpAddresses[CHAIN_ID])
 
 export default farms
