@@ -61,7 +61,7 @@ export const fetchFarmUserEarnings = async (account: string) => {
 
   const calls = farmsConfig.map((farm) => ({
     address: farm.whale ? masterWhaleAddress : masterShrimpAdress,
-    name: farm.whale ? 'pendingSalt' : 'pendingShrimp', // TODO: Change to Whale
+    name: farm.whale ? 'pendingRewards' : 'pendingShrimp', // TODO: Change to Whale
     params: [farm.pid, account],
   }))
 

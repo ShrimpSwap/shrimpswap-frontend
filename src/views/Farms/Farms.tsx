@@ -119,8 +119,8 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
     <Page>
       <Hero>
         <Heading as="h1" size="lg" color="primary" mb="10px" style={{ textAlign: 'center' }}>
-            {whaleMode ? "Stake tokens or LP tokens to earn 🐳 WHALE" : "Stake tokens or LP tokens to earn 🦐 SHRIMP"}
-            {/* { tokenMode ? 'Stake tokens to earn 🦐 SHRIMP' : 'Stake LP tokens to earn 🦐 SHRIMP' } */}
+          {whaleMode ? 'Stake tokens or LP tokens to earn 🐳 WHALE' : 'Stake tokens or LP tokens to earn 🦐 SHRIMP'}
+          {/* { tokenMode ? 'Stake tokens to earn 🦐 SHRIMP' : 'Stake LP tokens to earn 🦐 SHRIMP' } */}
         </Heading>
         <Heading as="h2" color="secondary" mb="20px" style={{ textAlign: 'center' }}>
           {TranslateString(10000, 'Deposit Fee will be used to buyback SHRIMP')}

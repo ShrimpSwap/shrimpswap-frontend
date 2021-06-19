@@ -10,6 +10,7 @@ import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { useApprove } from 'hooks/useApprove'
 import { getMasterShrimpAddress, getMasterWhaleAddress } from 'utils/addressHelpers'
+import { useMasterWhale, useMasterShrimp } from 'hooks/useContract'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 
@@ -36,7 +37,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const decimals = farm.tokenDecimals ? farm.tokenDecimals : 18
-  const masterchef = farm.whale ? getMasterShrimpAddress() : getMasterWhaleAddress()
+  const useMasterWhaleContract = useMasterWhale()
+  const useMasterShrimpContract = useMasterShrimp()
+  const masterchef = farm.whale ? useMasterWhaleContract : useMasterShrimpContract
 
   const lpContract = useMemo(() => {
     if (isTokenOnly) {
@@ -88,7 +91,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>
-      {farm.whale ? '🐳' : '🦐'}
+        {farm.whale ? '🐳' : '🦐'}
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
         </Text>

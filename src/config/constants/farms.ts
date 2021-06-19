@@ -215,43 +215,24 @@ const farms: FarmConfig[] = [
     isMasterShrimp: true,
   },
   {
-    key: 91,
-    pid: 9,
+    key: 1,
+    pid: 0,
     isTokenOnly: true,
-    lpSymbol: 'WBNB',
+    lpSymbol: 'WHALE',
     lpAddresses: {
       97: '',
-      56: '0x1B96B92314C44b159149f7E0303511fB2Fc4774f',
+      56: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1',
     },
-    tokenSymbol: 'BNB',
+    tokenSymbol: 'WHALE',
     tokenAddresses: {
-      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
-      56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
+      97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // FIXME:
+      56: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
     isMasterShrimp: true,
     whale: true,
-  },
-  {
-    key: 1,
-    pid: 1,
-    isTokenOnly: false,
-    lpSymbol: 'SALT-BUSD',
-    lpAddresses: {
-      97: '0xf62e8d3EcA464C9Fa9D46f169211eF4a41E41fE8',
-      56: '0x6596f770786915556C47E301cC8290aa14288d99',
-    },
-    tokenSymbol: 'SALT',
-    tokenAddresses: {
-      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780',
-      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
-    },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
-    isMasterShrimp: true,
-    whale: true,
-  },
+  }
 ].filter((f) => f.lpAddresses[CHAIN_ID])
 
 export default farms

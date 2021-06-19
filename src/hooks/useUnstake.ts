@@ -10,18 +10,18 @@ import {
 import { unstake, smartShrimpUnstake } from 'utils/callHelpers'
 import { useMasterShrimp, useSmartChef } from './useContract'
 
-const useUnstake = (pid: number) => {
+const useUnstake = (pid: number, masterChef) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
-  const masterShrimpContract = useMasterShrimp()
+  // const masterShrimpContract = useMasterShrimp()
 
   const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {
-      const txHash = await unstake(masterShrimpContract, pid, amount, account, decimals)
+      const txHash = await unstake(masterChef, pid, amount, account, decimals)
       dispatch(fetchFarmUserDataAsync(account))
       console.info(txHash)
     },
-    [account, dispatch, masterShrimpContract, pid],
+    [account, dispatch, masterChef, pid],
   )
 
   return { onUnstake: handleUnstake }

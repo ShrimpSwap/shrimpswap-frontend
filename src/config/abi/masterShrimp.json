@@ -376,7 +376,7 @@
                 "type": "address"
             }
         ],
-        "name": "pendingSalt",
+        "name": "pendingRewards",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -528,7 +528,7 @@
     },
     {
         "inputs": [],
-        "name": "saltPerBlock",
+        "name": "rewardPerBlock",
         "outputs": [
             {
                 "internalType": "uint256",

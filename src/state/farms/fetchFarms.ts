@@ -149,7 +149,7 @@ const fetchFarms = async () => {
           },
           {
             address: getMasterWhaleAddress(),
-            name: 'saltPerBlock',
+            name: 'rewardPerBlock',
           },
         ])
 

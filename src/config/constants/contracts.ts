@@ -8,7 +8,7 @@ export default {
     97: '0x136D2F682077Ca419A8777C02880ac8550Fe51A9',
   },
   masterWhale: {
-    56: '0xB4405445fFAcF2B86BC2bD7D1C874AC739265658', // TODO
+    56: '0x649c647933065836ae2AbB5145A03691cb8164E0', // TODO
     97: '0x136D2F682077Ca419A8777C02880ac8550Fe51A9', // TODO
   },
   wbnb: {
@@ -41,6 +41,10 @@ export default {
   },
   salt: {
     56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
+    97: '',
+  },
+  whale: {
+    56: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // TODO:
     97: '',
   },
 }
