@@ -49,7 +49,7 @@ const CakeStats: React.FC<CakeStatsProps> = (cakeStatsProps) => {
     <StyledCakeStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'Statistics')}
+        {whaleMode ? '🐳' : '🦐'} {TranslateString(534, 'Statistics')}
         </Heading>
         <Row>
           <Text fontSize="14px">Total {whaleMode ? 'WHALE' : 'SHRIMP'} Supply</Text>
