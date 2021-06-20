@@ -60,7 +60,7 @@ const CakeStats: React.FC<CakeStatsProps> = (cakeStatsProps) => {
           <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
         </Row>
         <Row>
-          <Text fontSize="14px">New {whaleMode ? 'WHALE' : 'SHRIMP'}</Text>
+          <Text fontSize="14px">New {whaleMode ? 'WHALE' : 'SHRIMP'} per block</Text>
           <Text bold fontSize="14px">
             {shrimpPerBlock}
           </Text>

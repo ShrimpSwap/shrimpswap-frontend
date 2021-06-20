@@ -69,7 +69,7 @@ export const usePriceShrimpBusd = (): BigNumber => {
 }
 
 export const usePriceWhaleBusd = (): BigNumber => {
-  const key = 21 // WHALE-BUSD LP // TODO: find the correct KEY / PID
+  const key = 31 // WHALE-BUSD LP
   const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO
