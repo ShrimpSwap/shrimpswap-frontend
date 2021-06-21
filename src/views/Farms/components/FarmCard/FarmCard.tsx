@@ -105,7 +105,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const farmImage = farm.isTokenOnly
     ? farm.tokenSymbol.toLowerCase()
     : `${farm.tokenSymbol.toLowerCase()}-${farm.quoteTokenSymbol.toLowerCase()}`
-
   const totalValue: BigNumber = useMemo(() => {
     if (!farm.lpTotalInQuoteToken) {
       return null
@@ -156,6 +155,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         multiplier={farm.multiplier}
         farmImage={farmImage}
         tokenSymbol={farm.tokenSymbol}
+        whale={farm.whale}
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">
