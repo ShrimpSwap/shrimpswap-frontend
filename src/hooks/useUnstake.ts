@@ -8,12 +8,11 @@ import {
   updateUserPendingReward,
 } from 'state/actions'
 import { unstake, smartShrimpUnstake } from 'utils/callHelpers'
-import { useMasterShrimp, useSmartChef } from './useContract'
+import { useSmartChef } from './useContract'
 
 const useUnstake = (pid: number, masterChef) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
-  // const masterShrimpContract = useMasterShrimp()
 
   const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {
