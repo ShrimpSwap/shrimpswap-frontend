@@ -23,14 +23,14 @@ export const useFetchPublicData = () => {
 
 export const useFarms = (): Farm[] => useSelector((state: State) => state.farms.data)
 
-export const useFarmFromPid = (pid: number): Farm =>
-  useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
+export const useFarmFromKey = (key: number): Farm =>
+  useSelector((state: State) => state.farms.data.find((f) => f.key === key))
 
 export const useFarmFromSymbol = (lpSymbol: string): Farm =>
   useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
 
-export const useFarmUser = (pid: number) => {
-  const farm = useFarmFromPid(pid)
+export const useFarmUser = (key: number) => {
+  const farm = useFarmFromKey(key)
 
   return {
     allowance: farm.userData ? new BigNumber(farm.userData.allowance) : ZERO,
@@ -60,8 +60,17 @@ export const usePoolFromPid = (sousId: number): Pool =>
 // Prices
 
 export const usePriceShrimpBusd = (): BigNumber => {
-  const pid = 0 // SHRIMP-BUSD LP
-  const farm = useFarmFromPid(pid)
+  const key = 10 // SHRIMP-BUSD LP
+  const farm = useFarmFromKey(key)
+
+  if (!farm) return ZERO
+
+  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+}
+
+export const usePriceWhaleBusd = (): BigNumber => {
+  const key = 31 // WHALE-BUSD LP
+  const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO
 
@@ -69,8 +78,8 @@ export const usePriceShrimpBusd = (): BigNumber => {
 }
 
 export const usePriceShrimpBnb = (): BigNumber => {
-  const pid = 2 // SHRIMP-BNB LP
-  const farm = useFarmFromPid(pid)
+  const key = 20 // SHRIMP-BNB LP
+  const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO
 
@@ -78,8 +87,8 @@ export const usePriceShrimpBnb = (): BigNumber => {
 }
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const pid = 3 // BUSD-BNB LP
-  const farm = useFarmFromPid(pid)
+  const key = 30 // BUSD-BNB LP
+  const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO
 
@@ -109,6 +118,7 @@ export const useTotalValue = (): BigNumber => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const shrimpPrice = usePriceShrimpBusd()
+  const whalePrice = usePriceWhaleBusd()
   const totalValue = useRef(new BigNumber(0))
 
   useEffect(() => {
@@ -120,13 +130,20 @@ export const useTotalValue = (): BigNumber => {
         if (farm.quoteTokenSymbol === QuoteToken.BNB) {
           val = bnbPrice.times(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
-          val = shrimpPrice.times(farm.lpTotalInQuoteToken)
+          if (farm.whale) {
+            val = whalePrice.times(farm.lpTotalInQuoteToken)
+          } else {
+            val = shrimpPrice.times(farm.lpTotalInQuoteToken)
+          }
         } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
           val = ethPrice.times(farm.lpTotalInQuoteToken)
         } else {
           val = farm.lpTotalInQuoteToken
         }
-        farmsTotalValue = farmsTotalValue.plus(val)
+        if (val.toString() !== 'NaN') {
+          // Somehow .isNan() was not working
+          farmsTotalValue = farmsTotalValue.plus(val)
+        }
       }
     }
 
@@ -138,12 +155,16 @@ export const useTotalValue = (): BigNumber => {
         const totalShrimpStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
         poolValue = shrimpPrice.times(totalShrimpStaked)
       }
+      if (pool.stakingTokenName === QuoteToken.WHALE) {
+        const totalWhaleStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = whalePrice.times(totalWhaleStaked)
+      }
 
       poolsTotalValue = poolsTotalValue.plus(poolValue ?? ZERO)
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
-  }, [bnbPrice, ethPrice, farms, pools, shrimpPrice])
+  }, [bnbPrice, ethPrice, farms, pools, shrimpPrice, whalePrice])
 
   if (!totalValue) {
     return new BigNumber(0)

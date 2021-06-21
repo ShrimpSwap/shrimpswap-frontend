@@ -7,6 +7,10 @@ export default {
     56: '0xABEE2aaF12E92384274D61d0dbd31bD7Fc35f38c',
     97: '0x136D2F682077Ca419A8777C02880ac8550Fe51A9',
   },
+  masterWhale: {
+    56: '0x709Fb31315ce6DE514C7991CCAAeF8B63ABBb77e',
+    97: '0x649c647933065836ae2AbB5145A03691cb8164E0', // main test
+  },
   wbnb: {
     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
@@ -38,5 +42,9 @@ export default {
   salt: {
     56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
     97: '',
+  },
+  whale: {
+    56: '0x93662179C3590D4dA42858ABE917C10542a40831',
+    97: '0x1F08f83742db8f6E217660Da5C49bD83AC674da1', // main test
   },
 }

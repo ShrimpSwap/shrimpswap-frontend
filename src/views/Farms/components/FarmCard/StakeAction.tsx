@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@shrimpswap/uikit'
 import useI18n from 'hooks/useI18n'
+import { Contract } from 'web3-eth-contract'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -16,6 +17,7 @@ interface FarmCardActionsProps {
   pid?: number
   depositFeeBP?: number
   decimals: number
+  masterChef: Contract
 }
 
 const IconButtonWrapper = styled.div`
@@ -32,10 +34,11 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   pid,
   depositFeeBP,
   decimals,
+  masterChef,
 }) => {
   const TranslateString = useI18n()
-  const { onStake } = useStake(pid)
-  const { onUnstake } = useUnstake(pid)
+  const { onStake } = useStake(pid, masterChef)
+  const { onUnstake } = useUnstake(pid, masterChef)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance, decimals)
   const displayBalance = rawStakedBalance.toLocaleString()

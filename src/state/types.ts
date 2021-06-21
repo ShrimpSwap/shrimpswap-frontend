@@ -44,5 +44,6 @@ export interface PoolsState {
 
 export interface State {
   farms: FarmsState
+  whalefarms: FarmsState
   pools: PoolsState
 }

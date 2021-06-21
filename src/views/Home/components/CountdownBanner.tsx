@@ -28,8 +28,9 @@ const CountdownBanner = () => (
   <StyledCountdownBanner>
     <Container>
       <Flex alignItems="center" justifyContent={['center', 'center', null, 'start']}>
-        <Countdown>Farms, pools and oceans are now opened!</Countdown>
+        <Countdown>Farming opens on block <a href="https://bscscan.com/block/countdown/8774580">8774580</a> (around Thu Jul 01 2021 12:44:20 GMT+0300) </Countdown>
       </Flex>
+      <Countdown><a href="https://shrimpswap.gitbook.io/shrimpswap/v2-whale/migration">Migration guide</a></Countdown>
     </Container>
   </StyledCountdownBanner>
 )

@@ -3,16 +3,21 @@ import erc20ABI from 'config/abi/erc20.json'
 import masterShrimpABI from 'config/abi/masterShrimp.json'
 import multicall from 'utils/multicall'
 import farmsConfig from 'config/constants/farms'
-import { getMasterShrimpAddress } from 'utils/addressHelpers'
+import { getMasterShrimpAddress, getMasterWhaleAddress } from 'utils/addressHelpers'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export const fetchFarmUserAllowances = async (account: string) => {
   const masterShrimpAdress = getMasterShrimpAddress()
+  const masterWhaleAddress = getMasterWhaleAddress()
 
   const calls = farmsConfig.map((farm) => {
     const lpContractAddress = farm.isTokenOnly ? farm.tokenAddresses[CHAIN_ID] : farm.lpAddresses[CHAIN_ID]
-    return { address: lpContractAddress, name: 'allowance', params: [account, masterShrimpAdress] }
+    return {
+      address: lpContractAddress,
+      name: 'allowance',
+      params: [account, farm.whale ? masterWhaleAddress : masterShrimpAdress],
+    }
   })
 
   const rawLpAllowances = await multicall(erc20ABI, calls)
@@ -37,9 +42,10 @@ export const fetchFarmUserTokenBalances = async (account: string) => {
 
 export const fetchFarmUserStakedBalances = async (account: string) => {
   const masterShrimpAdress = getMasterShrimpAddress()
+  const masterWhaleAddress = getMasterWhaleAddress()
 
   const calls = farmsConfig.map((farm) => ({
-    address: masterShrimpAdress,
+    address: farm.whale ? masterWhaleAddress : masterShrimpAdress,
     name: 'userInfo',
     params: [farm.pid, account],
   }))
@@ -51,10 +57,11 @@ export const fetchFarmUserStakedBalances = async (account: string) => {
 
 export const fetchFarmUserEarnings = async (account: string) => {
   const masterShrimpAdress = getMasterShrimpAddress()
+  const masterWhaleAddress = getMasterWhaleAddress()
 
   const calls = farmsConfig.map((farm) => ({
-    address: masterShrimpAdress,
-    name: 'pendingShrimp',
+    address: farm.whale ? masterWhaleAddress : masterShrimpAdress,
+    name: farm.whale ? 'pendingRewards' : 'pendingShrimp', // TODO: Change to Whale
     params: [farm.pid, account],
   }))
 

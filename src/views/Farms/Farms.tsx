@@ -8,7 +8,7 @@ import { Heading } from '@shrimpswap/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBnbBusd, usePriceShrimpBusd, usePriceEthBusd } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePriceShrimpBusd, usePriceWhaleBusd, usePriceEthBusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
@@ -20,9 +20,10 @@ import Divider from './components/Divider'
 
 export interface FarmsProps {
   tokenMode?: boolean
+  shrimp?: boolean
 }
 
-const Hero = styled.div`
+const Hero = styled.div<{ whaleMode: boolean }>`
   align-items: center;
   background-repeat: no-repeat;
   background-position: top center;
@@ -32,7 +33,10 @@ const Hero = styled.div`
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/shrimps-bg-2.svg'), url('/images/shrimps-bg.svg');
+    background-image: ${({ whaleMode }) =>
+      whaleMode
+        ? "url('/images/whales-bg-2.svg'), url('/images/whales-bg.svg')"
+        : "url('/images/shrimps-bg-2.svg'), url('/images/shrimps-bg.svg')"};
     background-position: left center, right center;
     height: 110px;
     padding-top: 0;
@@ -44,10 +48,12 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
   const shrimpPrice = usePriceShrimpBusd()
+  const whalePrice = usePriceWhaleBusd()
   const bnbPrice = usePriceBnbBusd()
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const { tokenMode } = farmsProps
+  const whaleMode = !farmsProps.shrimp
   const ethPriceUsd = usePriceEthBusd()
 
   const dispatch = useDispatch()
@@ -60,12 +66,12 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   const [stackedOnly, setStackedOnly] = useState(false)
 
-  const activeFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier !== '0X')
-  const inactiveFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier === '0X')
+  const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && farm.whale !== farmsProps.shrimp)
+  const inactiveFarms = farmsLP.filter((farm) => farm.multiplier === '0X')
   const stackedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
-
+  // console.log("farm",activeFarms)
   // /!\ This function will be removed soon
   // This function compute the APY for each farm and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
@@ -79,8 +85,8 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
           .times(new BigNumber(farm.poolWeight))
           .div(new BigNumber(10).pow(18))
         const shrimpRewardPerYear = shrimpRewardPerBlock.times(BLOCKS_PER_YEAR)
-
-        let apy = shrimpPrice.times(shrimpRewardPerYear)
+        const farmedTokenPrice = farm.whale ? whalePrice : shrimpPrice
+        let apy = farmedTokenPrice.times(shrimpRewardPerYear)
 
         let totalValue = new BigNumber(farm.lpTotalInQuoteToken || 0)
 
@@ -98,28 +104,28 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
       })
       return farmsToDisplayWithAPY.map((farm) => (
         <FarmCard
-          key={farm.pid}
+          key={farm.key}
           farm={farm}
           removed={removed}
           bnbPrice={bnbPrice}
-          cakePrice={shrimpPrice}
+          cakePrice={farm.whale ? whalePrice : shrimpPrice}
           ethPrice={ethPriceUsd}
           ethereum={ethereum}
           account={account}
         />
       ))
     },
-    [bnbPrice, account, shrimpPrice, ethPriceUsd, ethereum],
+    [bnbPrice, account, shrimpPrice, whalePrice, ethPriceUsd, ethereum],
   )
 
   return (
     <Page>
-      <Hero>
+      <Hero whaleMode={whaleMode}>
         <Heading as="h1" size="lg" color="primary" mb="10px" style={{ textAlign: 'center' }}>
-          {tokenMode ? 'Stake tokens to earn 🦐 SHRIMP' : 'Stake LP tokens to earn 🦐 SHRIMP'}
+          {`Stake tokens or PCS LP ${whaleMode ? 'V2' : ''} tokens to earn ${whaleMode ? '🐳 WHALE' : '🦐 SHRIMP'}`}
         </Heading>
         <Heading as="h2" color="secondary" mb="20px" style={{ textAlign: 'center' }}>
-          {TranslateString(10000, 'Deposit Fee will be used to buyback SHRIMP')}
+          The Deposit Fee will be used to create Oceans
         </Heading>
       </Hero>
       <FarmTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />

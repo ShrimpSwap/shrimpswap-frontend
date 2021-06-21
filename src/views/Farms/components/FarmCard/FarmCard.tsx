@@ -97,7 +97,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const { stakedBalance } = useFarmUser(farm.pid)
+  const { stakedBalance } = useFarmUser(farm.key)
   // const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
@@ -105,7 +105,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const farmImage = farm.isTokenOnly
     ? farm.tokenSymbol.toLowerCase()
     : `${farm.tokenSymbol.toLowerCase()}-${farm.quoteTokenSymbol.toLowerCase()}`
-
   const totalValue: BigNumber = useMemo(() => {
     if (!farm.lpTotalInQuoteToken) {
       return null
@@ -138,9 +137,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
-
   const lpLabel = farm.lpSymbol
-  const earnLabel = 'SHRIMP'
+  const earnLabel = farm.whale ? 'WHALE' : 'SHRIMP'
   const farmAPY =
     farm.apy &&
     farm.apy.times(new BigNumber(100)).toNumber().toLocaleString(undefined, {
@@ -157,6 +155,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         multiplier={farm.multiplier}
         farmImage={farmImage}
         tokenSymbol={farm.tokenSymbol}
+        whale={farm.whale}
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">

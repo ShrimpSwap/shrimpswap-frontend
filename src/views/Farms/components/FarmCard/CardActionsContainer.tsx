@@ -5,10 +5,11 @@ import { provider } from 'web3-core'
 import { getContract } from 'utils/erc20'
 import { Button, Flex, Text } from '@shrimpswap/uikit'
 import { Farm } from 'state/types'
-import { useFarmFromPid, useFarmUser } from 'state/hooks'
+import { useFarmFromKey, useFarmUser } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { useApprove } from 'hooks/useApprove'
+import { useMasterWhale, useMasterShrimp } from 'hooks/useContract'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 
@@ -28,13 +29,16 @@ interface FarmCardActionsProps {
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }) => {
   const TranslateString = useI18n()
   const [requestedApproval, setRequestedApproval] = useState(false)
-  const { pid, lpAddresses, tokenAddresses, isTokenOnly, depositFeeBP } = useFarmFromPid(farm.pid)
-  const { allowance, tokenBalance, stakedBalance, earnings } = useFarmUser(pid)
+  const { key, pid, lpAddresses, tokenAddresses, isTokenOnly, depositFeeBP } = useFarmFromKey(farm.key)
+  const { allowance, tokenBalance, stakedBalance, earnings } = useFarmUser(key)
   const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const tokenAddress = tokenAddresses[process.env.REACT_APP_CHAIN_ID]
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const decimals = farm.tokenDecimals ? farm.tokenDecimals : 18
+  const useMasterWhaleContract = useMasterWhale()
+  const useMasterShrimpContract = useMasterShrimp()
+  const masterchef = farm.whale ? useMasterWhaleContract : useMasterShrimpContract
 
   const lpContract = useMemo(() => {
     if (isTokenOnly) {
@@ -43,7 +47,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
     return getContract(ethereum as provider, lpAddress)
   }, [ethereum, lpAddress, tokenAddress, isTokenOnly])
 
-  const { onApprove } = useApprove(lpContract)
+  const { onApprove } = useApprove(lpContract, farm.whale)
 
   const handleApprove = useCallback(async () => {
     try {
@@ -64,6 +68,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
         pid={pid}
         depositFeeBP={depositFeeBP}
         decimals={decimals}
+        masterChef={masterchef}
       />
     ) : (
       <Button mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
@@ -74,10 +79,10 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
   return (
     <Action>
       <Flex>
-        🦐
+        {farm.whale ? '🐳' : '🦐'}
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
-          SHRIMP
+          {farm.whale ? 'whale' : 'shrimp'}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {TranslateString(999, 'Earned')}
@@ -85,7 +90,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
       </Flex>
       <HarvestAction earnings={earnings} pid={pid} />
       <Flex>
-        🦐
+        {farm.whale ? '🐳' : '🦐'}
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
         </Text>
