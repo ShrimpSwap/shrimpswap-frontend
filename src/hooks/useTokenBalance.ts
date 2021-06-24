@@ -7,7 +7,7 @@ import { getContract } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
 import multicall from 'utils/multicall'
 import erc20 from 'config/abi/erc20.json'
-import { getShrimpAddress, getWhaleAddress } from 'utils/addressHelpers'
+import { getShrimpAddress, getWhaleAddress, getMasterShrimpAddress } from 'utils/addressHelpers'
 import { useCountUp } from 'react-countup'
 import useRefresh from './useRefresh'
 
@@ -88,17 +88,23 @@ export const useBurnedBalance = (tokenAddress: string) => {
   useEffect(() => {
     const fetchBalance = async () => {
       const burnAddress = '0x000000000000000000000000000000000000dEaD'
-      const [burnedShrimpBalance] = await multicall(erc20, [
+      const shrimpMasterChef = getMasterShrimpAddress()
+      const [burnedShrimpBalance, lockedShrimp] = await multicall(erc20, [
         {
           address: tokenAddress,
           name: 'balanceOf',
           params: [burnAddress],
         },
+        {
+          address: tokenAddress,
+          name: 'balanceOf',
+          params: [shrimpMasterChef],
+        },
       ])
 
       if (!burnedShrimpBalance) return
 
-      setBalance(new BigNumber(burnedShrimpBalance))
+      setBalance((new BigNumber(burnedShrimpBalance)).plus(new BigNumber(lockedShrimp)))
     }
 
     fetchBalance()
