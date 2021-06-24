@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import erc20 from 'config/abi/erc20.json'
+import multicall from 'utils/multicall'
 import CoinGecko from 'coingecko-api'
 import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
 import { State, Farm, Pool } from './types'
@@ -111,6 +113,39 @@ export const usePriceEthBusd = (): BigNumber => {
   return ethPrice
 }
 
+// Ocean prices
+
+export const useOceanPriceBnb = (lpAddress: string, tokenAddress: string) => {
+  const [price, setPrice] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+
+      const [wbnbTokenBalanceLP, tokenBalanceLP] = await multicall(erc20, [
+        {
+          address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // wbnb
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: tokenAddress,
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!tokenBalanceLP || !wbnbTokenBalanceLP) return
+
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(tokenBalanceLP)))
+    }
+
+    fetchPrice()
+  }, [lpAddress, tokenAddress])
+
+  return price
+}
+
+// TVL
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms()
   const { account } = useWallet()

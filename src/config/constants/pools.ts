@@ -51,6 +51,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 20,
   },
+  {
+    sousId: 2,
+    tokenName: 'BLZ',
+    stakingTokenName: QuoteToken.SHRIMP,
+    stakingTokenAddress: {
+      97: '',
+      56: '0x62ee12e4fe74a815302750913c3c796bca23e40e', // SHRIMP
+    },
+    contractAddress: {
+      97: '',
+      56: '0x0f8C6678b927761fba680b61b8922cc0efE830d1', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '',
+      56: '0x35d992a2921f18d4e363ed1a4eda6a7bf2d0a5f7', // BLAZE
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://blazefinance.xyz/',
+    harvest: true,
+    tokenPerBlock: '0.011574074074074074',
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 20,
+  },
 ]
 
 export default pools
