@@ -26,7 +26,10 @@ const Farm: React.FC = () => {
   const pools = usePools(account)
   const bnbPriceUSD = usePriceBnbBusd()
   const block = useBlock()
-  const blzPrice = useOceanPriceBnb("0x8FcD899DD13f473f3E1F3a847a76F6F450f58Da7", "0x35d992a2921f18d4e363ed1a4eda6a7bf2d0a5f7")
+  const blzPrice = useOceanPriceBnb(
+    '0x8FcD899DD13f473f3E1F3a847a76F6F450f58Da7',
+    '0x35d992a2921f18d4e363ed1a4eda6a7bf2d0a5f7',
+  )
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)

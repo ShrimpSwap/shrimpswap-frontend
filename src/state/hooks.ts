@@ -120,7 +120,6 @@ export const useOceanPriceBnb = (lpAddress: string, tokenAddress: string) => {
 
   useEffect(() => {
     const fetchPrice = async () => {
-
       const [wbnbTokenBalanceLP, tokenBalanceLP] = await multicall(erc20, [
         {
           address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // wbnb
