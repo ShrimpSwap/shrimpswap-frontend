@@ -199,7 +199,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       <Flex justifyContent="space-between">
         <Text>{TranslateString(10001, 'Deposit Fee')}:</Text>
         <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-          {getBalanceNumber(new BigNumber(farm.depositFeeBP).div(100)).toFixed(4)}%
+          {getBalanceNumber(new BigNumber(farm.depositFeeBP).div(100)).toFixed(1)}%
         </Text>
       </Flex>
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
