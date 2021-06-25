@@ -62,7 +62,7 @@ export const usePoolFromPid = (sousId: number): Pool =>
 // Prices
 
 export const usePriceShrimpBusd = (): BigNumber => {
-  const key = 10 // SHRIMP-BUSD LP
+  const key = 11 // SHRIMP-BUSD LP v2
   const farm = useFarmFromKey(key)
 
   if (!farm) return ZERO

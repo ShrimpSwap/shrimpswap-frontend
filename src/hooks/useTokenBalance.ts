@@ -104,7 +104,7 @@ export const useBurnedBalance = (tokenAddress: string) => {
 
       if (!burnedShrimpBalance) return
 
-      setBalance((new BigNumber(burnedShrimpBalance)).plus(new BigNumber(lockedShrimp)))
+      setBalance(new BigNumber(burnedShrimpBalance).plus(new BigNumber(lockedShrimp)))
     }
 
     fetchBalance()
