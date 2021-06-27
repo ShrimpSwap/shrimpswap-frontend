@@ -24,9 +24,11 @@ const Menu = (props) => {
       currentLang={selectedLanguage && selectedLanguage.code}
       langs={allLanguages}
       setLang={setSelectedLanguage}
-      cakePriceUsd={shrimpPriceUsd.toNumber()} // TODO: Change to whale or add both
+      cakePriceUsd={shrimpPriceUsd.toNumber()} 
+      whalePriceUsd={whalePriceUsd.toNumber()}
       links={config}
       priceLink="#"
+      whalePriceLink="#"
       {...props}
     />
   )
