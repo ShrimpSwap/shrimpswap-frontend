@@ -47,6 +47,23 @@ export const useTotalSupply = () => {
   return totalSupply
 }
 
+export const useTotalSupplyWhale = () => {
+  const { slowRefresh } = useRefresh()
+  const [totalSupply, setTotalSupply] = useState<BigNumber>()
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const cakeContract = getContract(cakeABI, getWhaleAddress())
+      const supply = await cakeContract.methods.totalSupply().call()
+      setTotalSupply(new BigNumber(supply))
+    }
+
+    fetchTotalSupply()
+  }, [slowRefresh])
+
+  return totalSupply
+}
+
 export const useTotalWhaleSupply = () => {
   const { slowRefresh } = useRefresh()
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
