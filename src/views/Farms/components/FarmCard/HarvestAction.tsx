@@ -10,6 +10,7 @@ import styled from 'styled-components'
 interface FarmCardActionsProps {
   earnings?: BigNumber
   pid?: number
+  whale?: boolean
 }
 
 const BalanceAndCompound = styled.div`
@@ -19,10 +20,10 @@ const BalanceAndCompound = styled.div`
   flex-direction: column;
 `
 
-const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
+const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, whale }) => {
   const TranslateString = useI18n()
   const [pendingTx, setPendingTx] = useState(false)
-  const { onReward } = useHarvest(pid)
+  const { onReward } = useHarvest(pid, whale)
   // const { onStake } = useStake(pid)
 
   const rawEarningsBalance = getBalanceNumber(earnings)
