@@ -3,7 +3,7 @@ import { Card, CardBody, Heading } from '@shrimpswap/uikit'
 import styled from 'styled-components'
 import { usePriceShrimpBusd, usePriceWhaleBusd } from 'state/hooks'
 import { useBurnedBalance, useTotalSupply, useTotalSupplyWhale } from 'hooks/useTokenBalance'
-import { getShrimpAddress, getWhaleAddress, getWbnbAddress } from 'utils/addressHelpers'
+import { getShrimpAddress, getWhaleAddress } from 'utils/addressHelpers'
 import BigNumber from 'bignumber.js'
 import { useCountUp } from 'react-countup'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -50,8 +50,8 @@ const TotalMarketCapCard = () => {
             ${countUp}
           </a>
         </Heading>
-        </CardBody>
-        <CardBody>
+      </CardBody>
+      <CardBody>
         <Heading>
           Whale Total Market Cap{' '}
           <a href="https://shrimpswap.finance/graph" style={{ color: '#bd1220' }}>

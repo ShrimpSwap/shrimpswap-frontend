@@ -12,7 +12,6 @@ import { useFarms, usePriceBnbBusd, usePriceShrimpBusd, usePriceWhaleBusd, usePr
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
-import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
@@ -45,14 +44,12 @@ const Hero = styled.div<{ whaleMode: boolean }>`
 
 const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const { path } = useRouteMatch()
-  const TranslateString = useI18n()
   const farmsLP = useFarms()
   const shrimpPrice = usePriceShrimpBusd()
   const whalePrice = usePriceWhaleBusd()
   const bnbPrice = usePriceBnbBusd()
 
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
-  const { tokenMode } = farmsProps
   const whaleMode = !farmsProps.shrimp
   const ethPriceUsd = usePriceEthBusd()
 
