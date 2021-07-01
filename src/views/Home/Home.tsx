@@ -10,7 +10,7 @@ import TotalValueLockedCard from './components/TotalValueLockedCard'
 import TwitterCard from './components/TwitterCard'
 import EarnCard from './components/EarnCard'
 import TotalMarketCapCard from './components/TotalMarketCapCard'
-import CountdownBanner from './components/CountdownBanner'
+// import CountdownBanner from './components/CountdownBanner'
 
 const Hero = styled.div`
   align-items: center;
