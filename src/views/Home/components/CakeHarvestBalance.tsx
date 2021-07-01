@@ -4,7 +4,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import useAllEarnings from 'hooks/useAllEarnings'
-import { usePriceShrimpBusd } from 'state/hooks'
+import { usePriceWhaleBusd } from 'state/hooks'
 import CardValue from './CardValue'
 import CardBusdValue from './ShrimpBusdValue'
 
@@ -17,7 +17,7 @@ const CakeHarvestBalance = () => {
     0,
   )
 
-  const earningsBusd = new BigNumber(earningsSum).multipliedBy(usePriceShrimpBusd()).toNumber()
+  const earningsBusd = new BigNumber(earningsSum).multipliedBy(usePriceWhaleBusd()).toNumber()
 
   if (!account) {
     return (

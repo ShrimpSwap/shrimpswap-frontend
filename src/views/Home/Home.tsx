@@ -82,7 +82,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <CountdownBanner />
+      {/* <CountdownBanner /> */}
       <Page>
         <Hero>
           <Heading as="h1" size="xxl" color="#21223C">

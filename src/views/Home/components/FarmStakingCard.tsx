@@ -65,11 +65,11 @@ const FarmedStakingCard = () => {
         <CardImage src="/images/shrimp.svg" alt="Shrimp Logo" width={64} height={64} />
         <Block>
           <CakeHarvestBalance />
-          <Label>{TranslateString(544, 'SHRIMP to Harvest')}</Label>
+          <Label>WHALE to Harvest</Label>
         </Block>
         <Block>
           <CakeWalletBalance />
-          <Label>{TranslateString(546, 'SHRIMP in Wallet')}</Label>
+          <Label>WHALE in Wallet</Label>
         </Block>
         <Actions>
           {account ? (
