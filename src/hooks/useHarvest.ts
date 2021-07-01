@@ -11,7 +11,6 @@ export const useHarvest = (farmPid: number, whale: boolean) => {
   const masterShrimpContract = useMasterShrimp()
   const masterWhaleContract = useMasterWhale()
   const masterChef = whale ? masterWhaleContract : masterShrimpContract
-  console.log("whale",whale)
 
   const handleHarvest = useCallback(async () => {
     const txHash = await harvest(masterChef, farmPid, account)
