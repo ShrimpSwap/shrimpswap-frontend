@@ -21,7 +21,7 @@ const useFarmsWithBalance = () => {
     const fetchBalances = async () => {
       const calls = farmsConfig.map((farm) => ({
         address: farm.whale ? getMasterWhaleAddress() : getMasterShrimpAddress(),
-        name: 'pendingShrimp',
+        name: farm.whale ? 'pendingRewards' : 'pendingShrimp',
         params: [farm.pid, account],
       }))
 
