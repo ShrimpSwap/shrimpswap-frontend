@@ -50,8 +50,8 @@ const TotalMarketCapCard = () => {
             ${countUp}
           </a>
         </Heading>
-        </CardBody>
-        <CardBody>
+      </CardBody>
+      <CardBody>
         <Heading>
           Whale Total Market Cap{' '}
           <a href="https://shrimpswap.finance/graph" style={{ color: '#bd1220' }}>
