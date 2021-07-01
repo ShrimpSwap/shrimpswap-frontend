@@ -102,7 +102,8 @@ const fetchFarms = async () => {
       let poolWeight
       let initialShrimpPerBlockFromWei
 
-      if (!farmConfig.whale) { [info, totalAllocPoint, poolInfo, adjustmentRatio, initialShrimpPerblock] = await multicall(masterShrimpABI, [
+      if (!farmConfig.whale) {
+        [info, totalAllocPoint, poolInfo, adjustmentRatio, initialShrimpPerblock] = await multicall(masterShrimpABI, [
           {
             address: getMasterShrimpAddress(),
             name: 'poolInfo',
@@ -130,7 +131,8 @@ const fetchFarms = async () => {
         allocPoint = new BigNumber(info.allocPoint._hex)
         poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
         initialShrimpPerBlockFromWei = new BigNumber(initialShrimpPerblock).div(new BigNumber(10).pow(18))
-      } else { [info, totalAllocPoint, poolInfo, initialShrimpPerblock] = await multicall(masterShrimpABI, [
+      } else {
+        [info, totalAllocPoint, poolInfo, initialShrimpPerblock] = await multicall(masterShrimpABI, [
           {
             address: getMasterWhaleAddress(),
             name: 'poolInfo',
