@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 import { Card, CardBody, Heading } from '@shrimpswap/uikit'
 import styled from 'styled-components'
-import { usePriceShrimpBusd } from 'state/hooks'
-import { useBurnedBalance, useTotalSupply } from 'hooks/useTokenBalance'
-import { getShrimpAddress } from 'utils/addressHelpers'
+import { usePriceShrimpBusd, usePriceWhaleBusd } from 'state/hooks'
+import { useBurnedBalance, useTotalSupply, useTotalSupplyWhale } from 'hooks/useTokenBalance'
+import { getShrimpAddress, getWhaleAddress, getWbnbAddress } from 'utils/addressHelpers'
 import BigNumber from 'bignumber.js'
 import { useCountUp } from 'react-countup'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -20,7 +20,14 @@ const TotalMarketCapCard = () => {
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0)
   const marketCap = shrimpPrice.times(circSupply)
 
+  const burnedBalanceWhale = useBurnedBalance(getWhaleAddress())
+  const totalSupplyWhale = useTotalSupplyWhale()
+  const whalePrice = usePriceWhaleBusd()
+  const circSupplyWhale = totalSupplyWhale ? totalSupplyWhale.minus(burnedBalanceWhale) : new BigNumber(0)
+  const marketCapWhale = whalePrice.times(circSupplyWhale)
+
   const value = getBalanceNumber(marketCap)
+  const valueWhale = getBalanceNumber(marketCapWhale)
 
   const { countUp, update } = useCountUp({
     start: 0,
@@ -38,9 +45,17 @@ const TotalMarketCapCard = () => {
     <StyledTotalMarketCapCard>
       <CardBody>
         <Heading>
-          Total Market Cap{' '}
+          Shrimp Total Market Cap{' '}
           <a href="https://shrimpswap.finance/graph" style={{ color: '#bd1220' }}>
             ${countUp}
+          </a>
+        </Heading>
+        </CardBody>
+        <CardBody>
+        <Heading>
+          Whale Total Market Cap{' '}
+          <a href="https://shrimpswap.finance/graph" style={{ color: '#bd1220' }}>
+            ${valueWhale}
           </a>
         </Heading>
       </CardBody>
