@@ -31,7 +31,7 @@ const CountdownBanner = () => (
         <a href="https://bscscan.com/block/countdown/8774580" style={{ color: '#88bbdb' }}>
           8774580
         </a>
-        {` (${moment.utc('01 07 2021 12:45:00', 'DD MM YYYY hh:mm:ss').fromNow()})`}. Refer to our {` `}
+        {` (${moment.utc('01 07 2021 10:45:00', 'DD MM YYYY hh:mm:ss').fromNow()})`}. Refer to our {` `}
         <a href="https://shrimpswap.gitbook.io/shrimpswap/v2-whale/migration" style={{ color: '#88bbdb' }}>
           migration guide
         </a>
